@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head(title=${torneo.id == null ? 'Crear Torneo' : 'Editar Torneo'})}"></head>
+
+<body>
+    <div th:replace="~{fragments/boton-volver :: back(url=@{/torneos})}"></div>
+
+    <div class="container" style="max-width: 700px;">
+        <div class="main-card">
+            
+            <div class="bg-success-header p-3">
+                <h1 class="h4 mb-0 text-white" th:if="${torneo.id == null}"><i class="bi bi-plus-circle-fill"></i> Crear Nuevo Torneo</h1>
+                <h1 class="h4 mb-0 text-white" th:if="${torneo.id != null}"><i class="bi bi-pencil-fill"></i> Editar Torneo</h1>
+            </div>
+            
+            <form th:action="@{/torneos/guardar}" th:object="${torneo}" method="post" class="p-4 needs-validation text-white" novalidate>
+                
+                <input type="hidden" th:field="*{id}" />
+                <div class="mb-3">
+                    <label for="nombre" class="form-label fw-bold">Nombre del Torneo:</label>
+                    <input type="text" id="nombre" class="form-control" th:field="*{nombre}" required />
+                </div>
+                <div class="mb-3">
+                    <label for="ciudad" class="form-label fw-bold">Ciudad:</label>
+                    <input type="text" id="ciudad" class="form-control" th:field="*{ciudad}" />
+                </div>
+            
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="fechaInicio" class="form-label fw-bold">Fecha de Inicio:</label>
+                        <input type="text" id="fechaInicio" class="form-control datepicker" th:field="*{fechaInicio}" required placeholder="Seleccionar fecha..." />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="fechaFin" class="form-label fw-bold">Fecha de Fin:</label>
+                        <input type="text" id="fechaFin" class="form-control datepicker" th:field="*{fechaFin}" required placeholder="Seleccionar fecha..." />
+                    </div>
+                </div>
+
+                <hr class="my-4">
+                
+                <button type="submit" class="btn btn-success btn-lg fw-bold">Guardar Torneo</button>
+            </form>
+        </div>
+    </div>
+
+    <th:block th:replace="~{fragments/header :: scripts}"></th:block>
+    <th:block th:replace="~{fragments/header :: datepicker-scripts}"></th:block>
+</body>
+</html>

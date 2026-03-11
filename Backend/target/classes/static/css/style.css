@@ -1,0 +1,163 @@
+/* === TEMA GLOBAL === */
+body {
+    /* Tipografía de tu index */
+    font-family: 'Montserrat', 'Arial', sans-serif;
+    /* Fondo oscuro de tu index */
+    background-color: #212529; 
+    color: #f8f9fa;
+}
+
+/* Títulos con fuente gruesa */
+h1, h2, h3, h4, h5, .table thead th {
+    font-weight: 700; /* Títulos más gruesos */
+    text-transform: uppercase;
+}
+h1 {
+    font-weight: 900; /* Título principal super grueso */
+}
+
+/* === ESTILO DE TARJETA === */
+/* La "caja" centrada oscura de tu index */
+.main-card {
+    max-width: 900px;
+    margin: 3rem auto;
+    background-color: #343a40; /* Un gris oscuro, no negro */
+    border-radius: 1rem;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    margin-top: 5rem !important; /* Margen superior para el botón Volver */
+}
+
+/* Título verde del menú */
+.menu-title {
+    color: #4CAF50; /* Verde fútbol */
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+}
+
+/* === BOTONES DEL INDEX === */
+.btn-main {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 1.25rem;
+    transition: transform 0.2s ease-out;
+}
+.btn-main:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+.btn-main-green {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+}
+.btn-main-green:hover {
+    background-color: #5cb85c;
+    color: #ffffff;
+}
+
+.btn-main-white {
+    background-color: #f8f9fa;
+    color: #212529;
+    border: none;
+}
+.btn-main-white:hover {
+    background-color: #e2e6ea;
+    color: #212529;
+}
+
+/* === TABLAS (Para listas) === */
+.table thead {
+    background-color: #4CAF50; /* Verde */
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.table-hover tbody tr:hover {
+    background-color: #495057;
+    color: #ffffff;
+}
+
+/* === BOTÓN VOLVER ATRÁS === */
+.btn-volver-atras {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #adb5bd; /* Gris de Bootstrap */
+    z-index: 10;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.btn-volver-atras i {
+    font-size: 1.5rem;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.btn-volver-atras:hover {
+    color: #ffffff;
+    transform: translateX(-3px);
+}
+
+/* === MODAL DE ELIMINACIÓN === */
+.modal-confirm-delete .modal-content {
+    background-color: #ffffff;
+    color: #212529;
+}
+.modal-confirm-delete .modal-header {
+    background-color: #dc3545; /* Rojo */
+    color: #ffffff;
+    border-bottom: none;
+}
+.modal-confirm-delete .modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* === BOTÓN ELIMINAR GLOBAL (Hover) === */
+.btn-delete-global {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+tr:hover .btn-delete-global {
+    display: inline-block;
+}
+tr {
+    position: relative;
+}
+
+/* === TARJETA AZUL (Para Admin) === */
+.bg-primary-header {
+    background-color: #0d6efd;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+.table-primary {
+    background-color: #0d6efd !important;
+    color: #ffffff;
+}
+
+/* === TARJETA VERDE (Para Flujo Principal) === */
+.bg-success-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+.table-success {
+    background-color: #4CAF50 !important;
+    color: #ffffff;
+}

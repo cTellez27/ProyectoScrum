@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Panel de Administración</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .seccion { margin-bottom: 40px; border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+        .btn-aprobar { background-color: #28a745; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; border: none; cursor: pointer;}
+        .btn-asignar { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;}
+        .alerta { padding: 10px; margin-bottom: 10px; border-radius: 4px; }
+        .alerta-exito { background-color: #d4edda; color: #155724; }
+        .alerta-error { background-color: #f8d7da; color: #721c24; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        select { padding: 8px; margin-right: 10px; min-width: 200px;}
+    </style>
+</head>
+<body>
+
+    <h1>Panel de Administración</h1>
+    <a th:href="@{/}" style="float: right;">Volver al Inicio</a>
+
+    <div th:if="${exito}" class="alerta alerta-exito" th:text="${exito}"></div>
+    <div th:if="${error}" class="alerta alerta-error" th:text="${error}"></div>
+
+    <div class="seccion">
+        <h2>🛠️ Organizadores Pendientes de Aprobación</h2>
+        
+        <div th:if="${#lists.isEmpty(pendientes)}">
+            <p>No hay solicitudes pendientes.</p>
+        </div>
+
+        <table th:if="${not #lists.isEmpty(pendientes)}">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${pendientes}">
+                    <td th:text="${user.nombreUsuario}">Nombre</td>
+                    <td th:text="${user.correoUsuario}">Correo</td>
+                    <td>
+                        <form th:action="@{/admin/aprobar/{id}(id=${user.id})}" method="post">
+                            <button type="submit" class="btn-aprobar">✅ Aprobar</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="seccion">
+        <h2>🏆 Asignar Organizador a Torneo</h2>
+        <p><i>Nota: Solo se puede asignar a un organizador que no tenga torneos activos actualmente.</i></p>
+
+        <form th:action="@{/admin/asignar}" method="post">
+            <label>1. Selecciona Organizador (Aprobado):</label><br>
+            <select name="usuarioId" required>
+                <option value="" disabled selected>-- Elige un organizador --</option>
+                <option th:each="org : ${organizadores}" 
+                        th:value="${org.id}" 
+                        th:text="${org.nombreUsuario} + ' (' + ${org.correoUsuario} + ')'">
+                </option>
+            </select>
+            <br><br>
+
+            <label>2. Selecciona el Torneo:</label><br>
+            <select name="torneoId" required>
+                <option value="" disabled selected>-- Elige un torneo --</option>
+                <option th:each="t : ${torneos}" 
+                        th:value="${t.id}" 
+                        th:text="${t.nombre} + ' (Actual: ' + (${t.creadoPor != null} ? ${t.creadoPor.nombreUsuario} : 'Nadie') + ')'">
+                </option>
+            </select>
+            <br><br>
+
+            <button type="submit" class="btn-asignar">Asignar Torneo</button>
+        </form>
+    </div>
+
+</body>
+</html>

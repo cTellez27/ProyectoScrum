@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head(title='Dashboard: ' + ${torneo.nombre})}"></head>
+
+<body>
+	
+	<div th:replace="~{fragments/boton-volver :: back(url=@{/torneos})}"></div>
+	
+    <div class="container mt-5">
+        
+        <h1 class="text-white mb-3" th:text="${torneo.nombre}">[Nombre del Torneo]</h1>
+        
+        <p class="lead text-secondary mb-4">
+            <span class="badge bg-secondary me-2"><i class="bi bi-geo-alt-fill"></i> Ciudad: <span th:text="${torneo.ciudad}"></span></span>
+            <span class="badge bg-secondary"><i class="bi bi-person-fill"></i> Creado por: <span th:text="${torneo.creadoPorNombre}"></span></span>
+        </p>
+
+        <div class="card mb-5 border-success">
+            <div class="card-header bg-success text-white">Detalles del Evento</div>
+            <div class="card-body">
+                <p><strong><i class="bi bi-calendar-check me-2"></i>Inicio:</strong> <span th:text="${torneo.fechaInicio}"></span></p>
+                <p><strong><i class="bi bi-calendar-x me-2"></i>Fin:</strong> <span th:text="${torneo.fechaFin}"></span></p>
+            </div>
+        </div>
+
+        <h2 class="text-white mb-4">Opciones de Gestión</h2>
+
+        <div class="row g-3">
+            <div class="col-md-6 col-lg-4">
+                <a th:href="@{/torneos/{id}/equipos(id=${torneo.id})}" class="btn btn-primary btn-lg w-100 py-3">
+                    <i class="bi bi-people-fill me-2"></i> Gestionar Equipos Inscritos
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <a th:href="@{/partidos/torneo/{id}(id=${torneo.id})}" class="btn btn-warning btn-lg w-100 py-3 text-dark">
+                    <i class="bi bi-clock-fill me-2"></i> Gestionar Partidos
+                </a>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="~{fragments/header :: scripts}"></th:block>
+</body>
+</html>

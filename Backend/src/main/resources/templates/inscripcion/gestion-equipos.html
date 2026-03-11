@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head(title='Equipos: ' + ${torneoNombre})}"></head>
+
+<body>
+	
+	<div th:replace="~{fragments/boton-volver :: back(url=@{/torneos/4})}"></div>
+	
+    <div class="container mt-4">
+        
+        <h1 class="text-white mb-4">
+            Equipos Inscritos en: <span th:text="${torneoNombre}">[Nombre del Torneo]</span>
+        </h1>
+        <h3 class="text-secondary mb-4" th:text="'ID del Torneo: ' + ${torneoId}">ID del Torneo: X</h3>
+        
+        <div class="d-flex mb-3">
+            
+            <a th:href="@{/torneos/{torneoId}/equipos/nuevo(torneoId=${torneoId})}" class="btn btn-success me-2">
+                <i class="bi bi-plus-circle-fill"></i> Crear y Asociar Nuevo Equipo
+            </a>
+            
+            <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#inscribirEquipoModal">
+                <i class="bi bi-person-fill-add"></i> Inscribir Equipo Existente
+            </button>
+
+        </div>
+        
+        <hr>
+        
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-success">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Director Técnico</th>
+                    <th>Ciudad de Origen</th>
+                    <th class="text-end">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${equipos.isEmpty()}">
+                    <td colspan="4" class="text-center">No hay equipos inscritos en este torneo.</td>
+                </tr>
+                
+                <tr th:each="equipo : ${equipos}">
+                    
+                    <td th:text="${equipo.nombre}">Nombre del Equipo</td>
+                    <td th:text="${equipo.directorTecnico}">DT Nombre</td>
+                    <td th:text="${equipo.ciudadOrigen}">Ciudad Origen</td>
+                    
+					<td class="text-end">
+					        
+					        <a th:href="@{/equipos/{idEquipo}/jugadores(idEquipo=${equipo.id})}" 
+					           class="btn btn-warning btn-sm me-2 text-dark">
+					            <i class="bi bi-people-fill"></i> Jugadores
+					        </a>
+                        
+                        <a th:href="@{/torneos/{torneoId}/equipos/editar/{equipoId}(torneoId=${torneoId}, equipoId=${equipo.id})}" 
+                           class="btn btn-primary btn-sm me-2">
+                            <i class="bi bi-pencil-fill"></i> Editar
+                        </a>
+
+                        <button type="button" class="btn btn-danger btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="#confirmDeleteModal"
+                                th:data-delete-id="${equipo.id}"
+                                th:data-delete-name="${equipo.nombre}">
+                            <i class="bi bi-x-circle-fill"></i> Anular
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="inscribirEquipoModal" tabindex="-1" aria-labelledby="inscribirModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-black" id="inscribirModalLabel">Inscribir Equipo Existente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form th:action="@{/torneos/{torneoId}/equipos/inscribir(torneoId=${torneoId})}" method="post">
+                    <div class="modal-body text-black">
+                        <label for="equipoExistente" class="form-label">Seleccione el equipo a inscribir:</label>
+                        <select id="equipoExistente" name="equipoId" class="form-select" required>
+                            <option value="">-- Seleccionar Equipo --</option>
+                            <option th:each="noInscrito : ${equiposNoInscritos}" 
+                                    th:value="${noInscrito.id}" 
+                                    th:text="${noInscrito.nombre} + ' (' + ${noInscrito.directorTecnico} + ')'">Equipo A (DT)</option>
+                        </select>
+                        <div class="mt-2 text-warning" th:if="${#lists.isEmpty(equiposNoInscritos)}">
+                            No hay equipos disponibles para inscribir.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" th:disabled="${#lists.isEmpty(equiposNoInscritos)}">
+                            Inscribir
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-black" id="modalLabel">Confirmar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-black">
+                    ¿Estás seguro de **ANULAR** el equipo del torneo: 
+                    <strong id="modalTournamentName" class="text-danger-emphasis"></strong> del torneo?
+                    <br>
+                    <small class="text-warning">El equipo seguirá existiendo, pero ya no estará en este torneo.</small>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <a id="modalDeleteButton" href="#" class="btn btn-danger">Anular</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:replace="~{fragments/header :: scripts}"></th:block>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var deleteModal = document.getElementById('confirmDeleteModal');
+            if (deleteModal) {
+                deleteModal.addEventListener('show.bs.modal', function (e) {
+                    var button = e.relatedTarget;
+                    var equipoId = button.getAttribute('data-delete-id');
+                    var equipoName = button.getAttribute('data-delete-name');
+                    var torneoId = '[[${torneoId}]]'; 
+                    var deleteUrl = '/torneos/' + torneoId + '/equipos/desinscribir/' + equipoId;
+                    
+                    var modalNameElement = deleteModal.querySelector('#modalTournamentName');
+                    var modalDeleteButton = deleteModal.querySelector('#modalDeleteButton');
+
+                    deleteModal.querySelector('.modal-content').style.backgroundColor = '#333';
+                    
+                    modalNameElement.textContent = equipoName;
+                    modalDeleteButton.setAttribute('href', deleteUrl);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
