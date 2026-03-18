@@ -53,7 +53,7 @@ Desarrollar un sistema que permita gestionar torneos de fútbol de manera organi
 #  Tecnologías utilizadas
 El sistema fue desarrollado utilizando las siguientes tecnologías:
 
-# **Backend**
+## **Backend**
 * Spring Boot – Framework para el desarrollo de aplicaciones backend en Java.
 * Java Development Kit – Entorno de desarrollo utilizado para ejecutar la aplicación.
 * Apache Maven – Herramienta para la gestión de dependencias y construcción del proyecto.
@@ -63,7 +63,7 @@ El sistema fue desarrollado utilizando las siguientes tecnologías:
 
 **Reportes**
 JasperReports – Herramienta utilizada para la generación de reportes del sistema.
-# **Frontend**
+## **Frontend**
 
 * HTML
 * CSS
