@@ -78,7 +78,7 @@ JasperReports – Herramienta utilizada para la generación de reportes del sist
   **TRELLO** https://trello.com/invite/b/69bafdd3a57c1c780ba6dfba/ATTIe50295590f2997ffd8163c8db4b5dddc35864557/proyecto-scrum
   
  ## 🔒 Estado del Proyecto
-**🟡 Proximo a desarrollar
+* 🟡 Proximo a desarrollar
 
 ## 📄 Licencia
 * Este proyecto es de uso académico y puede ser modificado para fines educativos.
