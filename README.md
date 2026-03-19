@@ -14,8 +14,13 @@ El Sistema de **Gestión de Torneos de Fútbol** es una aplicación diseñada pa
 
 ---
 
-<h2 align="center"> Resumen del Proyecto </h2>
-El sistema permite registrar equipos, jugadores, programar partidos, registrar resultados y generar reportes de los partidos pendientes y de los partido jugados. Este proyecto busca mejorar la gestión de torneos, evitando procesos manuales y permitiendo un mejor control de la información.
+<h2 align="center">Descripción del proyecto </h2>
+El sistema debe permitir registrar equipos, jugadores, programar partidos, registrar resultados y generar reportes de los partidos pendientes y de los partido jugados. Este proyecto busca mejorar la gestión de torneos, evitando procesos manuales y permitiendo un mejor control de la información.
+
+# 🎯 Visión
+Desarrollar una plataforma digital eficiente e intuitiva para la gestión integral de torneos de fútbol, que permita organizar, administrar y automatizar procesos como inscripción de equipos, programación de partidos y control de resultados.
+
+A largo plazo, el sistema busca ser una solución escalable, adaptable a diferentes tipos de torneos y accesible desde múltiples dispositivos.
 
 
 # 🎯 Objetivos
@@ -69,7 +74,7 @@ JasperReports – Herramienta utilizada para la generación de reportes del sist
 * CSS
 
 # **Control de Versiones**
-*Git – Sistema de control de versiones.
+* Git – Sistema de control de versiones.
 
 # **Repositorio del Proyecto**
 * GitHub – Plataforma utilizada para alojar el repositorio del proyecto.
