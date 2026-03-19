@@ -1,5 +1,5 @@
-div align="center">
-
+<div align="center">
+  
 #  Sistema Gestión de Torneos de Fútbol
 ## **Fullstack | Proyecto Educativo | API REST + Interfaz Web**
 El Sistema de **Gestión de Torneos de Fútbol** es una aplicación diseñada para facilitar la **organización y administración de torneos deportivos**.
@@ -15,7 +15,7 @@ El Sistema de **Gestión de Torneos de Fútbol** es una aplicación diseñada pa
 ---
 
 <h2 align="center"> Resumen del Proyecto </h2>
-El sistema permite registrar equipos, jugadores, programar partidos, registrar resultados y generar reportes de los partidos perndiengtes y de los partido jugados. Este proyecto busca mejorar la gestión de torneos, evitando procesos manuales y permitiendo un mejor control de la información.
+El sistema permite registrar equipos, jugadores, programar partidos, registrar resultados y generar reportes de los partidos pendientes y de los partido jugados. Este proyecto busca mejorar la gestión de torneos, evitando procesos manuales y permitiendo un mejor control de la información.
 
 
 # 🎯 Objetivos
@@ -53,7 +53,7 @@ Desarrollar un sistema que permita gestionar torneos de fútbol de manera organi
 #  Tecnologías utilizadas
 El sistema fue desarrollado utilizando las siguientes tecnologías:
 
-## **Backend**
+# **Backend**
 * Spring Boot – Framework para el desarrollo de aplicaciones backend en Java.
 * Java Development Kit – Entorno de desarrollo utilizado para ejecutar la aplicación.
 * Apache Maven – Herramienta para la gestión de dependencias y construcción del proyecto.
@@ -63,7 +63,7 @@ El sistema fue desarrollado utilizando las siguientes tecnologías:
 
 **Reportes**
 JasperReports – Herramienta utilizada para la generación de reportes del sistema.
-## **Frontend**
+# **Frontend**
 
 * HTML
 * CSS
@@ -74,7 +74,7 @@ JasperReports – Herramienta utilizada para la generación de reportes del sist
 # **Repositorio del Proyecto**
 * GitHub – Plataforma utilizada para alojar el repositorio del proyecto.
 
-  ## Herramienta de Scrum
+ ## Herramienta de Scrum
   **TRELLO** https://trello.com/invite/b/69bafdd3a57c1c780ba6dfba/ATTIe50295590f2997ffd8163c8db4b5dddc35864557/proyecto-scrum
   
  ## 🔒 Estado del Proyecto
