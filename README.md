@@ -87,11 +87,11 @@ JasperReports – Herramienta utilizada para la generación de reportes del sist
   
 ## 👥 Roles del equipo
 
-Scrum Master: Daniella Rodriguez
-Equipo de Desarrollo:
-Frontend Developer Charly Jhoan Murillo
-Backend Developer Christian Tellez
-Base de datos: Sebastian 
+* Scrum Master: Daniella Rodriguez
+### Equipo de Desarrollo:
+* Frontend Developer Charly Jhoan Murillo
+* Backend Developer Christian Tellez
+* Base de datos: Sebastian 
 
 ## 📄 Licencia
 * Este proyecto es de uso académico y puede ser modificado para fines educativos.
