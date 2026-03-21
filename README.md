@@ -80,7 +80,7 @@ JasperReports – Herramienta utilizada para la generación de reportes del sist
 * GitHub – Plataforma utilizada para alojar el repositorio del proyecto.
 
  ## Herramienta de Scrum
-  **TRELLO** https://trello.com/invite/b/69bafdd3a57c1c780ba6dfba/ATTIe50295590f2997ffd8163c8db4b5dddc35864557/proyecto-scrum
+  **TRELLO** https://trello.com/invite/b/69becd1de9749cce0dbfbed3/ATTIdabf7856ef002c61fd0ed0069b30ce78E540341A/scrumboard-torneos
   
  ## 🔒 Estado del Proyecto
 * 🟡 Proximo a desarrollar
