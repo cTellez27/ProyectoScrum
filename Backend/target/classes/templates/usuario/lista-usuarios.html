@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head(title='Gestión de Usuarios')}"></head>
+
+<body>
+    <div th:replace="~{fragments/boton-volver :: back(url=@{/})}"></div>
+
+    <div class="container">
+        <div class="main-card" style="max-width: 1100px;">
+            
+            <div class="bg-primary-header d-flex justify-content-between align-items-center p-3">
+                <h1 class="h4 mb-0 text-white"><i class="bi bi-people-fill me-2"></i> Gestión de Usuarios</h1>
+                <a th:href="@{/usuarios/nuevo}" class="btn btn-light fw-bold text-dark">
+                    <i class="bi bi-person-plus-fill"></i> Nuevo Usuario
+                </a>
+            </div>
+
+            <div th:if="${mensajeExito}" class="alert alert-success m-3" role="alert" th:text="${mensajeExito}"></div>
+            <div th:if="${mensajeError}" class="alert alert-danger m-3" role="alert" th:text="${mensajeError}"></div>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle mb-0">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Activo</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${usuarios.isEmpty()}">
+                            <td colspan="6" class="text-center p-4">No hay usuarios registrados.</td>
+                        </tr>
+                        <tr th:each="usuario : ${usuarios}">
+                            <td th:text="${usuario.id}">1</td>
+                            <td th:text="${usuario.nombreUsuario}">Admin</td>
+                            <td th:text="${usuario.correoUsuario}">admin@correo.com</td>
+                            <td>
+                                <span th:if="${usuario.rol == 'ADMIN'}" class="badge bg-danger" th:text="${usuario.rol}"></span>
+                                <span th:if="${usuario.rol == 'ORGANIZADOR'}" class="badge bg-info text-dark" th:text="${usuario.rol}"></span>
+                            </td>
+                            <td>
+                                <span th:if="${usuario.activo}" class="badge bg-success">Sí</span>
+                                <span th:if="${!usuario.activo}" class="badge bg-secondary">No</span>
+                            </td>
+                            <td class="text-end">
+                                <a th:href="@{/usuarios/editar/{id}(id=${usuario.id})}" 
+                                   class="btn btn-warning btn-sm me-2 text-dark fw-bold">
+                                    <i class="bi bi-pencil-fill"></i> Editar
+                                </a>
+                                
+                                <button type="button" class="btn btn-danger btn-sm fw-bold"
+                                        data-bs-toggle="modal" 
+                                        th:data-bs-target="'#modalDeleteUsuario-' + ${usuario.id}">
+                                    <i class="bi bi-trash-fill"></i> Eliminar
+                                </button>
+                                
+                                <div th:replace="~{fragments/modal-eliminar :: modal(
+                                    modalId='modalDeleteUsuario-' + ${usuario.id},
+                                    modalTitle='Confirmar Eliminación',
+                                    modalBody='¿Seguro que deseas eliminar al usuario: <strong>' + ${usuario.nombreUsuario} + '</strong>?',
+                                    modalConfirmUrl=@{/usuarios/eliminar/{id}(id=${usuario.id})}
+                                )}"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:replace="~{fragments/header :: scripts}"></th:block>
+</body>
+</html>

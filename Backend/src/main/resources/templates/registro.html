@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registro de Usuario</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f2f5; }
+        .registro-container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 350px; }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;}
+        button { width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #218838; }
+        label { font-weight: bold; font-size: 0.9em; }
+        .aviso { font-size: 0.8em; color: #666; margin-top: -5px; margin-bottom: 10px; display: block;}
+    </style>
+</head>
+<body>
+
+<div class="registro-container">
+    <h2 style="text-align: center;">Crear Cuenta</h2>
+
+    <div th:if="${param.exito}" style="color: green; text-align: center; margin-bottom: 10px;">
+        Registro exitoso. Si eres Organizador, espera aprobación.
+    </div>
+
+    <form th:action="@{/registro}" method="post" th:object="${usuario}">
+        
+        <label>Nombre Completo:</label>
+        <input type="text" th:field="*{nombreUsuario}" required placeholder="Tu nombre" />
+
+        <label>Correo Electrónico:</label>
+        <input type="email" th:field="*{correoUsuario}" required placeholder="correo@ejemplo.com" />
+
+        <label>Contraseña:</label>
+        <input type="password" th:field="*{contrasenaUsuario}" required placeholder="********" />
+
+        <label>¿Qué deseas hacer?</label>
+        <select th:field="*{rol}" required id="rolSelect" onchange="mostrarAviso()">
+            <option value="ESPECTADOR">Quiero ver torneos (Espectador)</option>
+            <option value="ORGANIZADOR">Quiero organizar torneos (Organizador)</option>
+        </select>
+        
+        <span id="avisoOrganizador" class="aviso" style="display:none; color: orange;">
+            ⚠️ Los organizadores requieren aprobación de un administrador antes de poder entrar.
+        </span>
+
+        <button type="submit">Registrarse</button>
+    </form>
+    
+    <p style="text-align: center; margin-top: 15px;">
+        <a th:href="@{/login}">¿Ya tienes cuenta? Inicia sesión</a>
+    </p>
+</div>
+
+<script>
+    function mostrarAviso() {
+        var rol = document.getElementById("rolSelect").value;
+        var aviso = document.getElementById("avisoOrganizador");
+        if (rol === "ORGANIZADOR") {
+            aviso.style.display = "block";
+        } else {
+            aviso.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>

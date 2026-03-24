@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head(title='Partidos Pendientes')}"></head>
+
+<body>
+	
+	<div th:replace="~{fragments/boton-volver :: back(url=@{/})}"></div>
+	
+    <div class="container">
+        <div class="main-card" style="max-width: 1000px;">
+            
+            <div class="bg-success text-white d-flex justify-content-between align-items-center p-3" style="border-radius: 1rem 1rem 0 0;">
+                <h1 class="h4 mb-0"><i class="bi bi-calendar-event-fill me-2"></i> Partidos Pendientes (Global)</h1>
+            </div>
+
+            <div class="list-group list-group-flush p-3">
+                
+                <div th:if="${partidosPendientes.isEmpty()}" class="list-group-item text-center text-dark p-4">
+                    ¡No hay partidos pendientes por jugar!
+                </div>
+                
+                <div th:each="partido : ${partidosPendientes}" 
+                     class="list-group-item list-group-item-action bg-transparent text-white border-secondary">
+                    
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1 text-success-emphasis" th:text="${partido.torneoNombre}">Nombre del Torneo</h5>
+                        <small th:text="${#temporals.format(partido.fecha, 'dd MMM yyyy - HH:mm')} + ' hs'"></small>
+                    </div>
+                    
+                    <h3 class="my-2 text-center" style="font-weight: 900;">
+                        <span th:text="${partido.equipoLocalNombre}">Equipo Local</span>
+                        <span class="text-secondary mx-2">VS</span>
+                        <span th:text="${partido.equipoVisitanteNombre}">Equipo Visitante</span>
+                    </h3>
+                    
+                    <p class="mb-1 text-muted text-center">
+                        <i class="bi bi-pin-map-fill"></i>
+                        <span th:text="${partido.canchaNombre}">Nombre de la Cancha</span>
+                    </p>
+					
+					<div class="mb-3" style="text-align: right;">
+					    <span style="margin-right: 10px; font-weight: bold;">Descargar Reportes:</span>
+					    
+					    <a th:href="@{/reportes/jugados}" target="_blank" class="btn btn-outline-primary btn-sm">
+					        📊 Partidos Jugados
+					    </a>
+					    
+					    <a th:href="@{/reportes/pendientes}" target="_blank" class="btn btn-outline-warning btn-sm">
+					        📅 Partidos Pendientes
+					    </a>
+					</div>
+					</div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <th:block th:replace="~{fragments/header :: scripts}"></th:block>
+</body>
+</html>

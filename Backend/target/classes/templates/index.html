@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="~{fragments/header :: head(title='Inicio - SGTF')}"></head>
+
+<body>
+	<form th:action="@{/logout}" method="post">
+	    <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+	        Cerrar Sesión
+	    </button>
+	</form>
+    <main class="main-card text-center">
+        
+        <header>
+            <h1 class="text-white" style="font-size: 3.5rem;">
+                Sistema de Gestión de Torneos <span>⚽</span>
+            </h1>
+        </header>
+
+        <hr class="text-secondary my-4">
+
+        <nav>
+            <h2 class="menu-title">MENÚ PRINCIPAL</h2>
+            <div class="d-grid gap-3">
+                <a th:href="@{/torneos}" class="btn btn-main btn-main-green">
+                    <i class="bi bi-trophy-fill me-2"></i> Gestionar Torneos
+                </a>
+                <a th:href="@{/usuarios}" class="btn btn-main btn-main-white">
+                    <i class="bi bi-person-fill-gear me-2"></i> Gestionar Usuarios
+                </a>
+            </div>
+
+            <hr class="text-secondary my-4">
+            <h2 class="menu-title">CONSULTAS</h2>
+
+            <div class="d-grid gap-3">
+                <a th:href="@{/equipos}" class="btn btn-outline-light btn-lg w-100 py-3">
+                    <i class="bi bi-shield-fill me-2"></i> Ver Equipos Registrados
+                </a>
+                <a th:href="@{/partidos/pendientes}" class="btn btn-outline-light btn-lg w-100 py-3">
+                    <i class="bi bi-calendar-event-fill me-2"></i> Ver Partidos Pendientes
+                </a>
+            </div>
+        </nav>
+        
+        <footer class="mt-5 text-secondary">
+            <p>&copy; 2025 - Tu Proyecto de Torneos</p>
+        </footer>
+    </main>
+    <th:block th:replace="~{fragments/header :: scripts}"></th:block>
+</body>
+</html>
