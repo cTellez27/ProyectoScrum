@@ -124,6 +124,13 @@ Pantallas y vistas que verá el usuario.
 | US-61 | Vista de tabla de posiciones | Como usuario, quiero ver la clasificación de los equipos en una tabla organizada. | **Alta**  |
 | US-62 | Vista de reportes            | Como usuario, quiero acceder a reportes del sistema desde una interfaz sencilla.  | **Media** |
 
+## 📅 Historial de Cambios
+| **Fecha** | **Cambio**                               | **Responsable**                   |
+| --------- | ---------------------------------------- | --------------------------------- |
+|           |                                          |                                   |
+|           |                                          |                                   |
+|           |                                          |                                   |
+
 
 
 
