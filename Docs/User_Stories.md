@@ -361,67 +361,8 @@ para evitar errores al registrar información.
 
 *Prioridad: Alta*
 
-## 10. MÓDULO: BASE DE DATOS Y BACKEND
-### HU-46 – Crear base de datos
 
-Como desarrollador,
-quiero crear la base de datos del sistema,
-para almacenar de forma estructurada la información del torneo.
 
-*Prioridad: Alta*
 
-### HU-47 – Crear tablas principales
-
-Como desarrollador,
-quiero crear las tablas de equipos, jugadores, torneos, partidos y resultados,
-para soportar la funcionalidad del sistema.
-
-Prioridad: Alta
-
-HU-48 – Relacionar entidades
-
-Como desarrollador,
-quiero establecer relaciones entre las tablas,
-para mantener integridad y coherencia en la información.
-
-Prioridad: Alta
-
-HU-49 – Crear CRUD de equipos
-
-Como desarrollador,
-quiero implementar endpoints para registrar, consultar, editar y eliminar equipos,
-para conectar el backend con el frontend.
-
-Prioridad: Alta
-
-HU-50 – Crear CRUD de jugadores
-
-Como desarrollador,
-quiero implementar endpoints de jugadores,
-para permitir su gestión desde el sistema.
-
-Prioridad: Alta
-
-HU-51 – Crear CRUD de torneos
-
-Como desarrollador,
-quiero implementar endpoints de torneos,
-para permitir la administración de la competencia.
-
-Prioridad: Alta
-
-HU-52 – Crear CRUD de partidos
-
-Como desarrollador,
-quiero implementar endpoints de partidos,
-para gestionar la programación del torneo.
-
-Prioridad: Alta
-
-HU-53 – Crear endpoints de resultados
-
-Como desarrollador,
-quiero implementar servicios para registrar y consultar resultados,
-para mantener actualizado el estado del torneo.
 
 Prioridad: Alta
