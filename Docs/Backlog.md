@@ -17,8 +17,8 @@ Todo lo relacionado con acceso al sistema y control de usuarios.
 | US-04 | Gestionar usuarios | Como administrador, quiero registrar y administrar usuarios del sistema para controlar quién tiene acceso. | **Media** |
 | US-05 | Asignar roles      | Como administrador, quiero asignar roles (admin, organizador) para definir permisos dentro del sistema.    | **Media** |
 
-2. MÓDULO: GESTIÓN DE EQUIPOS
-   CRUD de equipos participantes del torneo.
+## 2. MÓDULO: GESTIÓN DE EQUIPOS
+CRUD de equipos participantes del torneo.
 
    | ID    | Backlog           | Descripción                                                                                        | Prioridad |
 | ----- | ----------------- | -------------------------------------------------------------------------------------------------- | --------- |
