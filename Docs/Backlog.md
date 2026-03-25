@@ -74,7 +74,7 @@ Registro de resultados deportivos y rendimiento.
 | US-31 | Registrar tarjetas   | Como administrador, quiero registrar tarjetas amarillas o rojas para llevar control disciplinario.      | **Media** |
 | US-32 | Consultar resultados | Como usuario, quiero visualizar los resultados de los partidos para seguir el torneo.                   | **Alta**  |
 
-## 8. MÓDULO: REPORTES
+## 7. MÓDULO: REPORTES
 Salidas e informes del sistema.
 
 | ID    | Backlog                       | Descripción                                                                                                  | Prioridad |
