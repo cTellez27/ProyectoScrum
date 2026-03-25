@@ -84,6 +84,49 @@ Salidas e informes del sistema.
 | US-38 | Generar reporte de partidos   | Como administrador, quiero generar un reporte de partidos programados y jugados para seguimiento del torneo. | **Media** |
 | US-39 | Generar reporte de resultados | Como administrador, quiero exportar los resultados del torneo para compartirlos o archivarlos.               | **Media** |
 | US-40 | Exportar reportes PDF         | Como administrador, quiero descargar reportes en PDF para presentarlos fácilmente.                           | **Baja**  |
+## 8. MÓDULO: INTERFAZ Y EXPERIENCIA DEL USUARIO
+Lo visual, navegación y usabilidad.
+
+| ID    | Backlog                     | Descripción                                                                                                    | Prioridad |
+| ----- | --------------------------- | -------------------------------------------------------------------------------------------------------------- | --------- |
+| US-41 | Panel principal (Dashboard) | Como usuario, quiero ver un panel con información general del torneo para tener acceso rápido a las funciones. | **Alta**  |
+| US-42 | Navegación por menú         | Como usuario, quiero navegar fácilmente entre módulos para usar el sistema sin dificultad.                     | **Alta**  |
+| US-43 | Diseño responsive           | Como usuario, quiero que el sistema se adapte a celular, tablet y PC para usarlo desde cualquier dispositivo.  | **Media** |
+| US-44 | Mensajes de confirmación    | Como usuario, quiero recibir mensajes al guardar, editar o eliminar datos para confirmar mis acciones.         | **Alta**  |
+| US-45 | Validaciones en formularios | Como usuario, quiero que los formularios validen los datos para evitar errores en el registro.                 | **Alta**  |
+
+## 10. MÓDULO: BASE DE DATOS Y BACKEND
+Todo lo que sostiene técnicamente el sistema.
+
+| ID    | Backlog                                   | Descripción                                                                                                             | Prioridad |
+| ----- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------- |
+| US-46 | Crear base de datos                       | Como desarrollador, quiero estructurar la base de datos para almacenar toda la información del torneo.                  | **Alta**  |
+| US-47 | Crear tablas principales                  | Como desarrollador, quiero crear tablas de equipos, jugadores, partidos, torneos y resultados para soportar el sistema. | **Alta**  |
+| US-48 | Crear relaciones entre tablas             | Como desarrollador, quiero relacionar correctamente las entidades para mantener integridad de datos.                    | **Alta**  |
+| US-49 | Crear endpoints CRUD de equipos           | Como desarrollador, quiero crear servicios CRUD para equipos y permitir su gestión desde el frontend.                   | **Alta**  |
+| US-50 | Crear endpoints CRUD de jugadores         | Como desarrollador, quiero crear servicios CRUD para jugadores y permitir su administración.                            | **Alta**  |
+| US-51 | Crear endpoints CRUD de torneos           | Como desarrollador, quiero crear servicios CRUD de torneos para administrarlos desde el sistema.                        | **Alta**  |
+| US-52 | Crear endpoints CRUD de partidos          | Como desarrollador, quiero crear servicios CRUD de partidos para programarlos y gestionarlos.                           | **Alta**  |
+| US-53 | Crear endpoints de resultados             | Como desarrollador, quiero crear servicios para registrar y consultar resultados.                                       | **Alta**  |
+| US-54 | Implementar lógica de tabla de posiciones | Como desarrollador, quiero automatizar el cálculo de posiciones para reflejar correctamente la clasificación.           | **Alta**  |
+
+## 11. MÓDULO: FRONTEND
+Pantallas y vistas que verá el usuario.
+
+| ID    | Backlog                      | Descripción                                                                       | Prioridad |
+| ----- | ---------------------------- | --------------------------------------------------------------------------------- | --------- |
+| US-55 | Vista de login               | Como usuario, quiero una pantalla de inicio de sesión para ingresar al sistema.   | **Alta**  |
+| US-56 | Vista de equipos             | Como usuario, quiero una interfaz para registrar, editar y consultar equipos.     | **Alta**  |
+| US-57 | Vista de jugadores           | Como usuario, quiero una interfaz para administrar jugadores de forma sencilla.   | **Alta**  |
+| US-58 | Vista de torneos             | Como usuario, quiero una pantalla para crear y administrar torneos.               | **Alta**  |
+| US-59 | Vista de partidos            | Como usuario, quiero una interfaz para programar y consultar partidos.            | **Alta**  |
+| US-60 | Vista de resultados          | Como usuario, quiero registrar y visualizar resultados desde una pantalla clara.  | **Alta**  |
+| US-61 | Vista de tabla de posiciones | Como usuario, quiero ver la clasificación de los equipos en una tabla organizada. | **Alta**  |
+| US-62 | Vista de reportes            | Como usuario, quiero acceder a reportes del sistema desde una interfaz sencilla.  | **Media** |
+
+
+
+
 
 
 
