@@ -1,7 +1,7 @@
 
-Historia de Usuario
+# Historia de Usuario
 
-# 1. MÓDULO: AUTENTICACIÓN Y USUARIOS
+## 1. MÓDULO: AUTENTICACIÓN Y USUARIOS
 ### **HU-01–Iniciar sesión**
 
 Como administrador del sistema,
