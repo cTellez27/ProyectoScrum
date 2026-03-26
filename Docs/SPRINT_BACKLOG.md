@@ -9,6 +9,7 @@ El Sprint Backlog es el conjunto de elementos del Product Backlog seleccionados 
 # 👥 Asignación de Tareas por Rol
 
 **1. Desarrollador Backend – Christian Camilo Tellez**
+
 Responsable de la lógica del sistema, conexión con base de datos, endpoints, servicios y reglas del negocio.
 **Responsabilidad:** API REST, base de datos, lógica de negocio
 
