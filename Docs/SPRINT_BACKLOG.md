@@ -7,9 +7,25 @@ Fecha: Marzo 2026
 El Sprint Backlog es el conjunto de elementos del Product Backlog seleccionados para el Sprint, más un plan para entregar el incremento y conseguir el objetivo del Sprint.
 
 # 👥 Asignación de Tareas por Rol
+1. Desarrollador Frontend – Charly Jhoan Murillo
+Responsable de las vistas, formularios, tablas, experiencia visual e integración con backend.
+**Responsabilidad:** Interfaz de usuario, UX/UI, componentes React
 
-**1. Desarrollador Backend – Christian Camilo Tellez**
+* HU-41	Ver panel principal	
+* HU-42	Navegar por el sistema	
+* HU-43	Usar el sistema en cualquier dispositivo	
+* HU-44	Recibir mensajes de confirmación	
+* HU-45	Validación de formularios	
+* HU-55	Diseñar vista de login
+* HU-56	Diseñar vista de equipos	
+* HU-57	Diseñar vista de jugadores	
+* HU-58	Diseñar vista de torneos	
+* HU-59	Diseñar vista de partidos	
+* HU-60	Diseñar vista de resultados	
+* HU-61	Diseñar vista de tabla de posiciones
+* HU-62	Diseñar vista de reportes	
 
+**2. Desarrollador Backend – Christian Camilo Tellez**
 Responsable de la lógica del sistema, conexión con base de datos, endpoints, servicios y reglas del negocio.
 **Responsabilidad:** API REST, base de datos, lógica de negocio
 
@@ -59,7 +75,9 @@ Responsable de la lógica del sistema, conexión con base de datos, endpoints, s
 * HU-50	Crear CRUD de jugadores
 * HU-51	Crear CRUD de torneos	
 * HU-52	Crear CRUD de partidos	
-* HU-53	Crear endpoints de resultados	
+* HU-53	Crear endpoints de resultados
+
+  **Responsabilidad: API REST, base de datos, lógica de negocio**
 
 
 
