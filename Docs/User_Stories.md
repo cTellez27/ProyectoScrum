@@ -1,5 +1,5 @@
 
-# Historia de Usuario
+# Historial de Usuario
 
 ## 1. MÓDULO: AUTENTICACIÓN Y USUARIOS
 ### **HU-01–Iniciar sesión**
