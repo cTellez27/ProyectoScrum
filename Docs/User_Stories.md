@@ -387,3 +387,10 @@ Para: Conocer la nómina oficial de cada escuadra.
 Criterios de Aceptación: Muestra Nombre, Dorsal y Posición del jugador.
 
 *Prioridad: Alta*
+
+### HU-45: Buscador Rápido de Equipos y Jugadores
+Como: Usuario
+Quiero: Digitar el nombre de un jugador o equipo en una barra de búsqueda global
+Para: Encontrar su perfil e historial de forma inmediata sin navegar por todos los menús.
+
+*Prioridad: media*
