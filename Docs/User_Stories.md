@@ -361,8 +361,29 @@ para evitar errores al registrar información.
 
 *Prioridad: Alta*
 
+### HU-46: Programación Manual de Partido
 
+Como: Administrador de Sorteos
+Quiero: Seleccionar dos equipos rivales, asignarles una fecha, hora y cancha
+Para: Crear un partido específico dentro del calendario.
+Criterios de Aceptación: El partido se crea en estado "Pendiente".
 
+*Prioridad: Alta*
 
+### HU-47: Validación de Disponibilidad de Cancha
 
-Prioridad: Alta
+Como: Sistema
+Quiero: Comprobar que la cancha seleccionada esté libre en el horario asignado
+Para: Prevenir que dos partidos se programen en el mismo terreno simultáneamente.
+Criterios de Aceptación: Muestra un error si la combinación de Sede + Fecha + Hora ya está ocupada por otro encuentro.
+
+*Prioridad: Alta*
+
+### HU-48: Consulta de Plantilla por Equipo
+
+Como: Usuario
+Quiero: Hacer clic en un equipo y desplegar la lista de sus jugadores inscritos
+Para: Conocer la nómina oficial de cada escuadra.
+Criterios de Aceptación: Muestra Nombre, Dorsal y Posición del jugador.
+
+*Prioridad: Alta*
