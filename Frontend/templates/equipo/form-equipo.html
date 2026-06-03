@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
+<head th:replace="~{fragments/header :: head(title=${equipo.id == null ? 'Crear Equipo' : 'Editar Equipo'})}"></head>
+
+<body>
+    <div class="main-card">
+        <h1 class="text-white mb-3">
+            <span th:if="${equipo.id == null}">Crear Nuevo Equipo</span>
+            <span th:if="${equipo.id != null}">Editar Equipo</span>
+        </h1>
+        <p class="text-secondary mb-4">Completa los datos del equipo y asígnalo al torneo.</p>
+
+        <form th:action="@{/torneos/{torneoId}/equipos/guardar-y-asociar(torneoId=${torneoId})}"
+            th:object="${equipo}" method="post" class="form-card needs-validation" novalidate>
+
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre del Equipo</label>
+                <input type="text" id="nombre" class="form-control" th:field="*{nombre}" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="directorTecnico" class="form-label">Director Técnico</label>
+                <input type="text" id="directorTecnico" class="form-control" th:field="*{directorTecnico}" />
+            </div>
+
+            <div class="mb-3">
+                <label for="ciudadOrigen" class="form-label">Ciudad de Origen</label>
+                <input type="text" id="ciudadOrigen" class="form-control" th:field="*{ciudadOrigen}" />
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-submit">
+                    <i class="bi bi-check-circle-fill"></i> Guardar
+                </button>
+                <a th:href="@{/torneos/{torneoId}/equipos(torneoId=${torneoId})}" class="btn btn-secondary">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+    <th:block th:replace="~{fragments/header :: scripts}"></th:block>
+</body>
+</html>
