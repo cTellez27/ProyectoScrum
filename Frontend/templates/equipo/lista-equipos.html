@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head(title='Gestión de Equipos')}"></head>
+
+<body>
+    <div class="container">
+        <div th:replace="~{fragments/boton-volver :: back(url=@{/})}"></div>
+
+        <div class="main-card" style="max-width: 1100px;">
+            
+            <div class="bg-primary-header d-flex justify-content-between align-items-center p-3">
+                <h1 class="h4 mb-0 text-white"><i class="bi bi-shield-fill me-2"></i> Gestión de Equipos Base</h1>
+                <a th:href="@{/equipos/nuevo}" class="btn btn-light fw-bold text-dark">
+                    <i class="bi bi-plus-circle-fill"></i> Nuevo Equipo
+                </a>
+            </div>
+
+            <div th:if="${mensajeExito}" class="alert alert-success m-3" role="alert" th:text="${mensajeExito}"></div>
+            <div th:if="${mensajeError}" class="alert alert-danger m-3" role="alert" th:text="${mensajeError}"></div>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle mb-0">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Director Técnico</th>
+                            <th>Ciudad de Origen</th>
+                            <th>Creado Por</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${equipos.isEmpty()}">
+                            <td colspan="5" class="text-center p-4">No hay equipos registrados.</td>
+                        </tr>
+                        
+                        <tr th:each="equipo : ${equipos}">
+                            <td th:text="${equipo.nombre}">Nombre del Equipo</td>
+                            <td th:text="${equipo.directorTecnico}">DT Nombre</td>
+                            <td th:text="${equipo.ciudadOrigen}">Ciudad Origen</td>
+                            <td th:text="${equipo.creadoPorNombre}">Admin</td>
+                            <td class="text-end">
+                                
+                                <a th:href="@{/equipos/{idEquipo}/jugadores(idEquipo=${equipo.id})}" 
+                                   class="btn btn-warning btn-sm me-2 text-dark fw-bold">
+                                    <i class="bi bi-people-fill"></i> Jugadores
+                                </a>
+                                
+                                <a th:href="@{/equipos/editar/{id}(id=${equipo.id})}" class="btn btn-primary btn-sm me-2 fw-bold">
+                                    <i class="bi bi-pencil-fill"></i> Editar
+                                </a>
+
+                                <button type="button" class="btn btn-danger btn-sm"
+                                        data-bs-toggle="modal" 
+                                        th:data-bs-target="'#modalDeleteEquipo-' + ${equipo.id}">
+                                    <i class="bi bi-trash-fill"></i> Eliminar
+                                </button>
+                                
+                                <div th:replace="~{fragments/modal-eliminar :: modal(
+                                    modalId='modalDeleteEquipo-' + ${equipo.id},
+                                    modalTitle='Confirmar Eliminación GLOBAL',
+                                    modalBody='¿Seguro que deseas eliminar <strong>' + ${equipo.nombre} + '</strong> del sistema? <br><small>Se borrarán sus jugadores, partidos e inscripciones.</small>',
+                                    modalConfirmUrl=@{/equipos/eliminar/{id}(id=${equipo.id})}
+                                )}"></div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        </div>
+    
+    <th:block th:replace="~{fragments/header :: scripts}"></th:block>
+    
+    </body>
+</html>
