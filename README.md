@@ -131,4 +131,40 @@ Nuestro tablero de Trello está organizado siguiendo las mejores prácticas de S
 
  ```text
 📋 [1. Backlog (HUs)] ➔ 📝 [2. Por Hacer] ➔ ⏳ [3. En Proceso] ➔ 🧪 [4. Pruebas / QA] ➔ ✅ [5. Hecho]
+```
+
+## 🚀 Cómo descargar y ejecutar el proyecto localmente
+
+Sigue estos pasos para clonar el proyecto y configurarlo en tu entorno local.
+
+### 📋 Prerrequisitos
+
+Antes de empezar, asegúrate de tener instalado lo siguiente:
+* **Java JDK 17** (o la versión que estés usando en tu proyecto).
+* **Maven** (opcional, si no usas el empaquetador `mvnw` incluido).
+* **MariaDB Server** activo.
+* Un IDE de tu preferencia (IntelliJ IDEA, Eclipse, VS Code).
+* **Git** instalado en tu sistema.
+
+---
+
+### 🛠️ Paso a Paso
+
+#### 1. Clonar el repositorio
+Abre tu terminal o consola de comandos y ejecuta el siguiente comando para clonar el proyecto:
+```bash
+
+```
+
+2. Configurar la Base de Datos (MariaDB)
+Abre tu gestor de base de datos (DBeaver, HeidiSQL, MySQL Workbench, etc.) o la consola de MariaDB.
+
+Crea una nueva base de datos para el sistema de torneos ejecutando:
+
+SQL
+CREATE DATABASE torneo_db;
+
+
+3. Configurar las credenciales en Spring Boot
+Navega en el proyecto hasta la ruta src/main/resources/application.properties (o application.yml) y asegúrate de modificar las credenciales de conexión con las tuyas:
 
