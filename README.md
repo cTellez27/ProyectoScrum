@@ -172,8 +172,8 @@ Navega en el proyecto hasta la ruta src/main/resources/application.properties (o
 Properties
  ```text
 spring.datasource.url=jdbc:mariadb://localhost:3306/torneo_db
-spring.datasource.username=TU_USUARIO_DE_MARIADB
-spring.datasource.password=TU_CONTRASENA_DE_MARIADB
+spring.datasource.username= confidencial
+spring.datasource.password=pedir al equipo de trabajo
 
 # Configuración de Hibernate / JPA
 spring.jpa.hibernate.ddl-auto=update
