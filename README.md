@@ -153,7 +153,7 @@ Antes de empezar, asegúrate de tener instalado lo siguiente:
 #### 1. Clonar el repositorio
 Abre tu terminal o consola de comandos y ejecuta el siguiente comando para clonar el proyecto:
 ```bash
-
+https://github.com/cTellez27/ProyectoScrum.git
 ```
 
 2. Configurar la Base de Datos (MariaDB)
