@@ -141,7 +141,7 @@ Sigue estos pasos para clonar el proyecto y configurarlo en tu entorno local.
 
 Antes de empezar, asegúrate de tener instalado lo siguiente:
 * **Java JDK 17** (o la versión que estés usando en tu proyecto).
-* **Maven** (opcional, si no usas el empaquetador `mvnw` incluido).
+* **Maven** 
 * **MariaDB Server** activo.
 * Un IDE de tu preferencia (IntelliJ IDEA, Eclipse, VS Code).
 * **Git** instalado en tu sistema.
