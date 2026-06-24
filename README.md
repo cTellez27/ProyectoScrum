@@ -89,7 +89,32 @@ Desarrollar un sistema robusto que permita gestionar torneos de fútbol de maner
 * **Trello:** Gestión del flujo de trabajo bajo el marco de trabajo Scrum.
 
 ---
+## 📂 Estructura del Código
 
+El proyecto sigue la estructura estándar de una aplicación **Spring Boot** estructurada por capas para mantener el código ordenado, escalable y fácil de mantener por el equipo:
+
+```text
+torneo-futbol/
+├── src/
+│   ├── main/
+│   │   ├── java/com/torneo/
+│   │   │   ├── controllers/      # Controladores HTTP (Manejan las peticiones del Frontend)
+│   │   │   ├── models/           # Entidades de la Base de Datos (Equipos, Jugadores, Partidos)
+│   │   │   ├── repositories/     # Interfaces de comunicación con MariaDB (Consultas SQL)
+│   │   │   ├── services/         # Lógica de negocio y reglas del torneo
+│   │   │   └── TorneoApplication.java # Clase principal para arrancar el sistema
+│   │   │
+│   │   └── resources/
+│   │       ├── static/           # Archivos del Frontend (CSS, Imágenes, JavaScript)
+│   │       │   ├── css/
+│   │       │   └── js/
+│   │       ├── templates/        # Vistas de la aplicación (Archivos HTML)
+│   │       ├── reports/          # Plantillas de JasperReports (.jrxml)
+│   │       └── application.properties # Configuración de la Base de Datos MariaDB
+│   └── test/                     # Pruebas unitarias del sistema
+│
+├── pom.xml                       # Configuración de dependencias de Apache Maven
+└── README.md                     # Documentación del proyecto
 ## 📊 Estado del Proyecto & Tablero de Trabajo
 
 * **Estado Actual:** 🟡 **Próximo a desarrollar** *(Planificación completada, listo para iniciar el Sprint 1).*
