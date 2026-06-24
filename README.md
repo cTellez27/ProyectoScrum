@@ -115,6 +115,9 @@ torneo-futbol/
 │
 ├── pom.xml                       # Configuración de dependencias de Apache Maven
 └── README.md                     # Documentación del proyecto
+```
+
+
 ## 📊 Estado del Proyecto & Tablero de Trabajo
 
 * **Estado Actual:** 🟡 **Próximo a desarrollar** *(Planificación completada, listo para iniciar el Sprint 1).*
@@ -122,3 +125,10 @@ torneo-futbol/
 > 📋 **Tablero Scrum (Trello):** Puedes seguir el avance del desarrollo y las historias de usuario a través de nuestro tablero oficial.
 > 
 > [🔗 Acceder al Scrum Board en Trello](https://trello.com/invite/b/69becd1de9749cce0dbfbed3/ATTIdabf7856ef002c61fd0ed0069b30ce78E540341A/scrumboard-torneos)
+
+## Estructura y Flujo de Trabajo (Trello)
+Nuestro tablero de Trello está organizado siguiendo las mejores prácticas de Scrum para gestionar las Historias de Usuario (HU). El ciclo de vida de una tarea se divide en las siguientes listas:
+
+ ```text
+📋 [1. Backlog (HUs)] ➔ 📝 [2. Por Hacer] ➔ ⏳ [3. En Proceso] ➔ 🧪 [4. Pruebas / QA] ➔ ✅ [5. Hecho]
+
