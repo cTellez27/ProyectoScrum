@@ -64,8 +64,7 @@ Desarrollar un sistema robusto que permita gestionar torneos de fútbol de maner
 * ✨ Inscripción y fichaje de jugadores.
 * ✨ Programación automatizada de partidos (Fixture).
 * ✨ Registro dinámico de resultados.
-* ✨ Cálculo automático de la tabla de posiciones.
-* ✨ Módulo de consultas y reportes estadísticos.
+* ✨ Módulo de consultas y reportes.
 
 ---
 
