@@ -156,15 +156,42 @@ Abre tu terminal o consola de comandos y ejecuta el siguiente comando para clona
 https://github.com/cTellez27/ProyectoScrum.git
 ```
 
-2. Configurar la Base de Datos (MariaDB)
+#### 2. Configurar la Base de Datos (MariaDB)
 Abre tu gestor de base de datos (DBeaver, HeidiSQL, MySQL Workbench, etc.) o la consola de MariaDB.
 
-Crea una nueva base de datos para el sistema de torneos ejecutando:
+**Crea una nueva base de datos para el sistema de torneos ejecutando:**
 
+ ```text
 SQL
 CREATE DATABASE torneo_db;
+```
 
-
-3. Configurar las credenciales en Spring Boot
+### 3. Configurar las credenciales en Spring Boot
 Navega en el proyecto hasta la ruta src/main/resources/application.properties (o application.yml) y asegúrate de modificar las credenciales de conexión con las tuyas:
 
+Properties
+ ```text
+spring.datasource.url=jdbc:mariadb://localhost:3306/torneo_db
+spring.datasource.username=TU_USUARIO_DE_MARIADB
+spring.datasource.password=TU_CONTRASENA_DE_MARIADB
+
+# Configuración de Hibernate / JPA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+```
+
+#### 4. Ejecutar la aplicación
+Abre tu IDE (ej. IntelliJ IDEA).
+
+1. Importa el proyecto como un Proyecto Maven existente.
+2. Espera a que se descarguen las dependencias automáticamente (Spring Web, Spring Data JPA, Thymeleaf, etc.).
+3. Busca la clase principal del proyecto (la que tiene la anotación @SpringBootApplication) y haz clic en Run.
+
+### 5. Acceder a la aplicación
+Una vez que en la consola del IDE o terminal veas el mensaje Started ... Application in ... seconds, abre tu navegador web e ingresa a la siguiente dirección:
+
+Plaintext
+ ```text
+http://localhost:8080
+```
+!Ya puedes Navegar sobre el sistema!
