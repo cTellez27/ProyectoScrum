@@ -19,15 +19,25 @@ public class SecurityConfig {
 	            // 1. Recursos públicos
 	            .requestMatchers("/login", "/registro", "/css/**", "/js/**").permitAll()
 	            
-	            // 2. REGLAS DE ORGANIZADOR (Rutas que modifican datos)
-	            // Solo el organizador puede entrar a nuevo, editar, guardar o eliminar
-	            .requestMatchers("/torneos/nuevo", "/torneos/guardar", "/torneos/editar/**", "/torneos/eliminar/**")
-	                .hasAuthority("ORGANIZADOR")
-	                
+	            // 2. REGLAS DE ORGANIZADOR (Rutas de administración, creación y mutación)
+	            .requestMatchers(
+	                "/torneos/nuevo", "/torneos/guardar", "/torneos/editar/**", "/torneos/eliminar/**",
+	                "/canchas/nuevo", "/canchas/guardar", "/canchas/editar/**", "/canchas/eliminar/**",
+	                "/equipos/nuevo", "/equipos/guardar", "/equipos/editar/**", "/equipos/eliminar/**",
+	                "/partidos/torneo/*/guardar", "/partidos/torneo/*/registrar-resultado", "/partidos/torneo/*/eliminar/**",
+	                "/equipos/*/jugadores/guardar", "/equipos/*/jugadores/eliminar/**",
+	                "/partidos/*/tarjetas/registrar", "/partidos/tarjetas/eliminar/**",
+	                "/usuarios/**"
+	            ).hasAuthority("ORGANIZADOR")
 	            
-	            // 3. REGLAS GENERALES (Para Espectadores y Organizadores)
-	            // Cualquiera logueado puede ver la lista (/torneos) y el detalle
-	            .requestMatchers("/reportes/**", "/torneos", "/torneos/**").authenticated()
+	            // 3. REGLAS GENERALES (Para Espectadores y Organizadores - Solo lectura y navegación básica)
+	            .requestMatchers(
+	                "/torneos", "/torneos/**",
+	                "/canchas", "/canchas/**",
+	                "/equipos", "/equipos/**",
+	                "/partidos/**",
+	                "/reportes/**"
+	            ).authenticated()
 	            
 	            .anyRequest().authenticated()
 	        )

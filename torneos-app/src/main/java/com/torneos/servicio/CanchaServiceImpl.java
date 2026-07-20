@@ -15,9 +15,10 @@ import com.torneos.modelo.Cancha;
 import com.torneos.repositorio.CanchaRepository;
 import com.torneos.repositorio.PartidoRepository;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(readOnly = true)
 public class CanchaServiceImpl implements CanchaService {
 
     @Autowired
@@ -43,6 +44,7 @@ public class CanchaServiceImpl implements CanchaService {
     }
 
     @Override
+    @Transactional
     public CanchaDTO guardarCancha(CanchaDTO dto) {
         Cancha cancha;
         if (dto.getId() != null) {
