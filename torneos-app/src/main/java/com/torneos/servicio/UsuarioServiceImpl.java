@@ -79,11 +79,8 @@ public class UsuarioServiceImpl implements UsuarioService {
             // Mantenemos el rol y estado que ya tenía (o actualizamos si es admin)
         }
 
-        // Mapeo de campos comunes
-        usuario.setNombreUsuario(dto.getNombreUsuario());
-        usuario.setCorreoUsuario(dto.getCorreoUsuario());
-        // Nota: Asegúrate que tu entidad Usuario tenga setNombre/setEmail o setNombreUsuario/setCorreoUsuario
-        // según como la definiste.
+        // Mapeo de campos comunes usando el mapper
+        usuario = usuarioMapper.toEntity(dto, usuario);
 
         Usuario guardado = usuarioRepository.save(usuario);
         return usuarioMapper.toDTO(guardado);

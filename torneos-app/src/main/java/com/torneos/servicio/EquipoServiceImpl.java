@@ -59,6 +59,8 @@ public class EquipoServiceImpl implements EquipoService {
                     .orElseThrow(() -> new RuntimeException("Equipo no encontrado"));
             
             equipo.setNombre(dto.getNombre());
+            equipo.setDirectorTecnico(dto.getDirectorTecnico());
+            equipo.setCiudadOrigen(dto.getCiudadOrigen());
         } else {
             // Creación
             equipo = equipoMapper.toEntity(dto);
