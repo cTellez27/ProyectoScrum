@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="~{fragments/header :: head(title='Inicio - SGTF')}"></head>
+
+<body>
+    <main class="main-card-home text-center">
+        <header>
+            <h1 class="text-white" style="font-size: 1.5rem;">
+                Sistema de Gestión de Torneos <span>⚽</span>
+            </h1>
+        </header>
+
+        <nav>
+            <h2 class="menu-title-home">¿Quien Eres?</h2>
+            <div class="d-grid gap-3">
+                <a th:href="@{/login}" class="btn btn-main-home btn-main-green-home">
+                    <i class="bi bi-trophy-fill me-2"></i> Administrador
+                </a>
+                <a th:href="@{/espectador}" class="btn btn-main-home btn-main-white-home">
+                    <i class="bi bi-person-fill-gear me-2"></i> Espectador
+                </a>
+            </div>
+        </nav>
+    </main>
+    <th:block th:replace="~{fragments/header :: scripts}"></th:block>
+</body>
+</html>
