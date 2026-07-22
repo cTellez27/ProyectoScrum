@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head(title=${cancha.id == null ? 'Crear Cancha' : 'Editar Cancha'})}"></head>
+
+<body>
+    <div class="container" style="max-width: 700px;">
+        <div class="main-card">
+            
+            <div class="bg-primary-header p-3">
+                <h1 class="h4 mb-0 text-white" th:if="${cancha.id == null}">
+                    <i class="bi bi-plus-circle-fill"></i> Crear Nueva Cancha
+                </h1>
+                <h1 class="h4 mb-0 text-white" th:if="${cancha.id != null}">
+                    <i class="bi bi-pencil-fill"></i> Editar Cancha
+                </h1>
+            </div>
+            
+            <form th:action="@{/canchas/guardar}" th:object="${cancha}" method="post" class="p-4 needs-validation text-white" novalidate>
+                
+                <input type="hidden" th:field="*{id}" />
+
+                <div class="mb-3">
+                    <label for="nombre" class="form-label fw-bold">Nombre de la Cancha:</label>
+                    <input type="text" id="nombre" class="form-control" th:field="*{nombre}" required />
+                </div>
+                
+                <div class="mb-3">
+                    <label for="ubicacion" class="form-label fw-bold">Ubicación:</label>
+                    <input type="text" id="ubicacion" class="form-control" th:field="*{ubicacion}" />
+                </div>
+                
+                <div class="mb-3">
+                    <label for="capacidad" class="form-label fw-bold">Capacidad (Asientos):</label>
+                    <input type="number" id="capacidad" class="form-control" th:field="*{capacidad}" min="0" />
+                </div>
+
+                <hr class="my-4">
+                
+                <button type="submit" class="btn btn-success btn-lg fw-bold">
+                    <i class="bi bi-check-circle-fill"></i> Guardar Cancha
+                </button>
+                <a th:href="@{/canchas}" class="btn btn-secondary btn-lg ms-2 fw-bold">
+                    Cancelar
+                </a>
+            </form>
+        </div>
+    </div>
+
+    <th:block th:replace="~{fragments/header :: scripts}"></th:block>
+</body>
+</html>
