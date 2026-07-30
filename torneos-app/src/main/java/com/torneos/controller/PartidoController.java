@@ -31,6 +31,10 @@ public class PartidoController {
     @GetMapping("/pendientes")
     public String listarPartidosPendientes(Model model) {
         model.addAttribute("partidosPendientes", partidoService.listarPartidosPendientes());
+        
+        if (HomeController.rol == 0) {
+        	return "espectador/partido/lista-pendientes";
+        }
         return "partido/lista-pendientes";
     }
 
@@ -40,6 +44,11 @@ public class PartidoController {
         cargarDatosParaLaVista(idTorneo, model);
         model.addAttribute("partidosDelTorneo", partidoService.listarPartidosPorTorneo(idTorneo));
         model.addAttribute("nuevoPartido", new PartidoDTO());
+        
+        
+        if (HomeController.rol == 0) {
+        	return "espectador/partido/lista-programados";
+        }
         
         return "partido/gestion-partidos";
     }

@@ -27,6 +27,9 @@ public class EquipoController {
     public String listarTodosLosEquipos(Model model) {
         model.addAttribute("equipos", equipoService.listarEquipos());
 
+        if (HomeController.rol == 0) {
+        	return "espectador/equipo/lista-equipos";
+        }
         return "equipo/lista-equipos"; 
     }
 

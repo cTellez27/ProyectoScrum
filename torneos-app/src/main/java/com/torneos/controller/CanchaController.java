@@ -26,7 +26,9 @@ public class CanchaController {
     @GetMapping
     public String listarCanchas(Model model) {
         model.addAttribute("canchas", canchaService.listarCanchas());
-        
+        if (HomeController.rol == 0) {
+        	return "espectador/cancha/lista-canchas";
+        }
         return "cancha/lista-canchas";
     }
 
