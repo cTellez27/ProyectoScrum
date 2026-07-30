@@ -8,6 +8,10 @@ public class HomeController {
 
 	public static int rol=0;
 	
+    @GetMapping("/")
+    public String Inicio() {
+        return "redirect:/home";
+    }
     @GetMapping("/home")
     public String mostrarhome() {
         return "/home";

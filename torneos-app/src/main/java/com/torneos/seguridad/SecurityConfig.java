@@ -17,7 +17,12 @@ public class SecurityConfig {
 	    http
 	        .authorizeHttpRequests(requests -> requests
 	            // 1. Recursos públicos
-	            .requestMatchers("/login", "/registro", "/css/**", "/js/**").permitAll()
+	            .requestMatchers("/", "/home", "/login", "/registro", "/css/**", "/js/**", "/espectador/**",
+					"/torneos", "/torneos/{idTorneo}", "/torneos/{idTorneo}/equipos",
+	                "/canchas",
+	                "/equipos",
+	                "/partidos", "/partidos/torneo/1", "/partidos/pendientes"
+				).permitAll()
 	            
 	            // 2. REGLAS DE ORGANIZADOR (Rutas de administración, creación y mutación)
 	            .requestMatchers(
@@ -27,27 +32,21 @@ public class SecurityConfig {
 	                "/partidos/torneo/*/guardar", "/partidos/torneo/*/registrar-resultado", "/partidos/torneo/*/eliminar/**",
 	                "/equipos/*/jugadores/guardar", "/equipos/*/jugadores/eliminar/**",
 	                "/partidos/*/tarjetas/registrar", "/partidos/tarjetas/eliminar/**",
-	                "/usuarios/**"
+	                "/usuarios/**",
+					"/reportes/**"
 	            ).hasAuthority("ORGANIZADOR")
-	            
-	            // 3. REGLAS GENERALES (Para Espectadores y Organizadores - Solo lectura y navegación básica)
-	            .requestMatchers(
-	                "/torneos", "/torneos/**",
-	                "/canchas", "/canchas/**",
-	                "/equipos", "/equipos/**",
-	                "/partidos/**",
-	                "/reportes/**"
-	            ).authenticated()
 	            
 	            .anyRequest().authenticated()
 	        )
 	        .formLogin(form -> form
 	            .loginPage("/login")
-	            .defaultSuccessUrl("/torneos", true)
+	            .defaultSuccessUrl("/index", true)
 	            .permitAll()
 	        )
-	        // ... logout ...
-	        ;
+	        .logout(logout -> logout
+	            .logoutSuccessUrl("/home")
+	            .permitAll()
+	        );
 
 	    return http.build();
 	}
