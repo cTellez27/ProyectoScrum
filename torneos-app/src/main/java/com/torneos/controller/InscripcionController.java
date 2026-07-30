@@ -35,6 +35,10 @@ public class InscripcionController {
         model.addAttribute("torneoId", idTorneo);
         model.addAttribute("equipos", equiposInscritos); 
 
+        if (HomeController.rol == 0) {
+        	return "espectador/torneo/lista-equipos-torneo";
+        }
+        
         return "inscripcion/gestion-equipos";
     }
 

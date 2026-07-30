@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.torneos.dto.TorneoDTO; // Necesitamos el repo para guardar el estado
+import com.torneos.dto.TorneoDTO;
 import com.torneos.servicio.TorneoService;
 
 @Controller
@@ -24,6 +24,10 @@ public class TorneoController {
     @GetMapping
     public String listarTorneos(Model model) {
         model.addAttribute("torneos", torneoService.listarTorneos());
+        
+        if (HomeController.rol == 0) {
+        	return "espectador/torneo/lista-torneos";
+        }
         return "torneo/lista-torneos"; 
     }
 
@@ -33,6 +37,11 @@ public class TorneoController {
         
         if (torneoOpt.isPresent()) {
             model.addAttribute("torneo", torneoOpt.get());
+            
+            if (HomeController.rol == 0) {
+            	return "espectador/torneo/dashboard-torneo";
+            }
+            
             return "torneo/dashboard-torneo"; 
         } else {
             return "redirect:/torneos"; 
