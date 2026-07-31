@@ -64,8 +64,14 @@ public class EquipoController {
     }
 
     @PostMapping("/guardar")
-    public String guardarEquipo(@ModelAttribute EquipoDTO equipoDTO) {
+    public String guardarEquipo(@ModelAttribute EquipoDTO equipoDTO, RedirectAttributes attributes) {
+        boolean esEdicion = equipoDTO.getId() != null;
         equipoService.guardarEquipo(equipoDTO);
+        if (esEdicion) {
+            attributes.addFlashAttribute("mensajeExito", "Equipo actualizado con éxito.");
+        } else {
+            attributes.addFlashAttribute("mensajeExito", "Equipo registrado con éxito.");
+        }
         return "redirect:/equipos";
     }
 

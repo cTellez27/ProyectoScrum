@@ -112,19 +112,22 @@
                                         th:data-bs-target="'#modalDeletePartido-' + ${partido.id}">
                                     <i class="bi bi-trash-fill"></i>
                                 </button>
-                                
-                                <div th:replace="~{fragments/modal-eliminar :: modal(
-                                    modalId='modalDeletePartido-' + ${partido.id},
-                                    modalTitle='Confirmar Eliminación',
-                                    modalBody='¿Seguro que deseas eliminar el partido entre <strong>' + ${partido.equipoLocalNombre} + ' vs ' + ${partido.equipoVisitanteNombre} + '</strong>?',
-                                    modalConfirmUrl=@{/partidos/torneo/{idTorneo}/eliminar/{idPartido}(idTorneo=${torneo.id}, idPartido=${partido.id})}
-                                )}"></div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+    </div>
+
+    <!-- MODALES DE ELIMINACIÓN DE PARTIDO (NIVEL PRINCIPAL) -->
+    <div th:each="partido : ${partidosDelTorneo}">
+        <div th:replace="~{fragments/modal-eliminar :: modal(
+            modalId='modalDeletePartido-' + ${partido.id},
+            modalTitle='Confirmar Eliminación',
+            modalBody='¿Seguro que deseas eliminar el partido entre <strong>' + ${partido.equipoLocalNombre} + ' vs ' + ${partido.equipoVisitanteNombre} + '</strong>?',
+            modalConfirmUrl=@{/partidos/torneo/{idTorneo}/eliminar/{idPartido}(idTorneo=${torneo.id}, idPartido=${partido.id})}
+        )}"></div>
     </div>
 
     <div class="modal fade" id="resultadoModal" tabindex="-1" aria-labelledby="resultadoModalLabel" aria-hidden="true">

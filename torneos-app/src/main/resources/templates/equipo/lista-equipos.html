@@ -4,6 +4,7 @@
 <head th:replace="~{fragments/header :: head(title='Gestión de Equipos')}"></head>
 
 <body>
+    <div th:replace="~{fragments/header :: sidebar}"></div>
     <div class="container">
         <div th:replace="~{fragments/boton-volver :: back(url=@{/index})}"></div>
 
@@ -56,24 +57,24 @@
                                         th:data-bs-target="'#modalDeleteEquipo-' + ${equipo.id}">
                                     <i class="bi bi-trash-fill"></i> Eliminar
                                 </button>
-                                
-                                <div th:replace="~{fragments/modal-eliminar :: modal(
-                                    modalId='modalDeleteEquipo-' + ${equipo.id},
-                                    modalTitle='Confirmar Eliminación GLOBAL',
-                                    modalBody='¿Seguro que deseas eliminar <strong>' + ${equipo.nombre} + '</strong> del sistema? <br><small>Se borrarán sus jugadores, partidos e inscripciones.</small>',
-                                    modalConfirmUrl=@{/equipos/eliminar/{id}(id=${equipo.id})}
-                                )}"></div>
-
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        
-        </div>
-    
+    </div>
+
+    <!-- MODALES DE ELIMINACIÓN DE EQUIPO (NIVEL PRINCIPAL) -->
+    <div th:each="equipo : ${equipos}">
+        <div th:replace="~{fragments/modal-eliminar :: modal(
+            modalId='modalDeleteEquipo-' + ${equipo.id},
+            modalTitle='Confirmar Eliminación GLOBAL',
+            modalBody='¿Seguro que deseas eliminar <strong>' + ${equipo.nombre} + '</strong> del sistema? <br><small>Se borrarán sus jugadores, partidos e inscripciones.</small>',
+            modalConfirmUrl=@{/equipos/eliminar/{id}(id=${equipo.id})}
+        )}"></div>
+    </div>
+
     <th:block th:replace="~{fragments/header :: scripts}"></th:block>
-    
-    </body>
+</body>
 </html>

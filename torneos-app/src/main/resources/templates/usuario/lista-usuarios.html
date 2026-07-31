@@ -4,6 +4,7 @@
 <head th:replace="~{fragments/header :: head(title='Gestión de Usuarios')}"></head>
 
 <body>
+    <div th:replace="~{fragments/header :: sidebar}"></div>
     <div th:replace="~{fragments/boton-volver :: back(url=@{/index})}"></div>
 
     <div class="container">
@@ -59,19 +60,22 @@
                                         th:data-bs-target="'#modalDeleteUsuario-' + ${usuario.id}">
                                     <i class="bi bi-trash-fill"></i> Eliminar
                                 </button>
-                                
-                                <div th:replace="~{fragments/modal-eliminar :: modal(
-                                    modalId='modalDeleteUsuario-' + ${usuario.id},
-                                    modalTitle='Confirmar Eliminación',
-                                    modalBody='¿Seguro que deseas eliminar al usuario: <strong>' + ${usuario.nombreUsuario} + '</strong>?',
-                                    modalConfirmUrl=@{/usuarios/eliminar/{id}(id=${usuario.id})}
-                                )}"></div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+    </div>
+
+    <!-- MODALES DE ELIMINACIÓN DE USUARIO (NIVEL PRINCIPAL) -->
+    <div th:each="usuario : ${usuarios}">
+        <div th:replace="~{fragments/modal-eliminar :: modal(
+            modalId='modalDeleteUsuario-' + ${usuario.id},
+            modalTitle='Confirmar Eliminación',
+            modalBody='¿Seguro que deseas eliminar al usuario: <strong>' + ${usuario.nombreUsuario} + '</strong>?',
+            modalConfirmUrl=@{/usuarios/eliminar/{id}(id=${usuario.id})}
+        )}"></div>
     </div>
 
     <th:block th:replace="~{fragments/header :: scripts}"></th:block>
