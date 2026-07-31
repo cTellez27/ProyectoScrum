@@ -271,6 +271,16 @@ body.bg-dark {
     color: #ffffff;
 }
 
+.btn-main-blue-home {
+    background-color: #0d6efd;
+    color: #ffffff;
+    border: none;
+}
+.btn-main-blue-home:hover {
+    background-color: #0b5ed7;
+    color: #ffffff;
+}
+
 .btn-main-white-home {
     background-color: #f8f9fa;
     color: #212529;

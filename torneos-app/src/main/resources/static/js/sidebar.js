@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const trigger = document.getElementById('sidebar-logo-trigger');
+    const triggers = document.querySelectorAll('.sidebar-logo-trigger');
     const sidebar = document.getElementById('app-sidebar');
     const backdrop = document.getElementById('sidebar-backdrop');
     const closeBtn = document.getElementById('sidebar-close-btn');
 
-    if (!sidebar || !trigger) return;
+    if (!sidebar || triggers.length === 0) return;
 
     let isOpen = false;
 
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         sidebar.classList.add('open');
         if (backdrop) backdrop.classList.add('active');
         sidebar.setAttribute('aria-hidden', 'false');
-        trigger.setAttribute('aria-expanded', 'true');
+        triggers.forEach(t => t.setAttribute('aria-expanded', 'true'));
         document.body.style.overflow = 'hidden';
 
         if (closeBtn) {
@@ -28,10 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
         sidebar.classList.remove('open');
         if (backdrop) backdrop.classList.remove('active');
         sidebar.setAttribute('aria-hidden', 'true');
-        trigger.setAttribute('aria-expanded', 'false');
+        triggers.forEach(t => t.setAttribute('aria-expanded', 'false'));
         document.body.style.overflow = '';
-
-        trigger.focus();
     }
 
     function toggleSidebar() {
@@ -42,13 +40,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    trigger.addEventListener('click', toggleSidebar);
-
-    trigger.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleSidebar();
-        }
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', toggleSidebar);
+        trigger.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleSidebar();
+            }
+        });
     });
 
     if (closeBtn) {

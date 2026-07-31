@@ -6,11 +6,6 @@
 
 <body>
     <div th:replace="~{fragments/header :: sidebar}"></div>
-	<form th:action="@{/logout}" method="post">
-	    <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
-	        Cerrar Sesión
-	    </button>
-	</form>
     <main class="main-card text-center">
         
         <header>
@@ -27,7 +22,7 @@
                 <a th:href="@{/torneos}" class="btn btn-main btn-main-green">
                     <i class="bi bi-trophy-fill me-2"></i> Gestionar Torneos
                 </a>
-                <a th:href="@{/usuarios}" class="btn btn-main btn-main-white">
+                <a th:href="@{/usuarios}" class="btn btn-main btn-main-white" sec:authorize="hasAnyAuthority('ADMIN', 'ADMINISTRADOR')">
                     <i class="bi bi-person-fill-gear me-2"></i> Gestionar Usuarios
                 </a>
             </div>
