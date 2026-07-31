@@ -3,6 +3,7 @@
 <body>
 
 <div th:fragment="back(url)">
+    <div th:replace="~{fragments/header :: sidebar}"></div>
     <a th:href="${url}" class="btn-volver-atras">
         <i class="bi bi-arrow-left-circle-fill"></i> Volver
     </a>

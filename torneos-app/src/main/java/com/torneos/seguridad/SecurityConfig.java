@@ -33,8 +33,9 @@ public class SecurityConfig {
 	                "/equipos/*/jugadores/guardar", "/equipos/*/jugadores/eliminar/**",
 	                "/partidos/*/tarjetas/registrar", "/partidos/tarjetas/eliminar/**",
 	                "/usuarios/**",
+	                "/admin/**",
 					"/reportes/**"
-	            ).hasAuthority("ORGANIZADOR")
+	            ).hasAnyAuthority("ADMIN", "ADMINISTRADOR", "ORGANIZADOR")
 	            
 	            .anyRequest().authenticated()
 	        )

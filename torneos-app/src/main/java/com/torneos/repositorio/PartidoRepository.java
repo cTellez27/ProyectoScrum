@@ -10,4 +10,5 @@ public interface PartidoRepository extends JpaRepository<Partido, Long> {
     boolean existsByCancha_Id(Long idCancha);
     List<Partido> findByResultado(String resultado);
     List<Partido> findByResultadoNot(String resultado);
+    List<Partido> findByEquipoLocal_IdOrEquipoVisitante_Id(Long idEquipoLocal, Long idEquipoVisitante);
 }

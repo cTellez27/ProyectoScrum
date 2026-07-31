@@ -171,4 +171,15 @@ public class TorneoServiceImpl implements TorneoService {
 
         torneoRepository.save(torneo);
     }
+
+    @Override
+    @Transactional
+    public void asignarOrganizador(Long idTorneo, Long idUsuario) {
+        Torneo torneo = torneoRepository.findById(idTorneo)
+                .orElseThrow(() -> new RuntimeException("Torneo no encontrado con ID: " + idTorneo));
+        Usuario usuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + idUsuario));
+        torneo.setCreadoPor(usuario);
+        torneoRepository.save(torneo);
+    }
 }

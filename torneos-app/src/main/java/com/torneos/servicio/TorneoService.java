@@ -24,4 +24,6 @@ public interface TorneoService {
     // --- ¡MÉTODO NUEVO! ---
     // Desinscribe un equipo de un torneo
     void desinscribirEquipoDeTorneo(Long idTorneo, Long idEquipo);
+
+    void asignarOrganizador(Long idTorneo, Long idUsuario);
 }

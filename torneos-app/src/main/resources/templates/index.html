@@ -5,6 +5,7 @@
 <head th:replace="~{fragments/header :: head(title='Inicio - SGTF')}"></head>
 
 <body>
+    <div th:replace="~{fragments/header :: sidebar}"></div>
 	<form th:action="@{/logout}" method="post">
 	    <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
 	        Cerrar Sesión

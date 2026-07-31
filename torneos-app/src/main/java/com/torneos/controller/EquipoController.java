@@ -23,11 +23,20 @@ public class EquipoController {
     @Autowired
     private EquipoService equipoService;
 
+    private boolean esEspectador() {
+        org.springframework.security.core.Authentication auth = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated() || auth instanceof org.springframework.security.authentication.AnonymousAuthenticationToken) {
+            return true;
+        }
+        return auth.getAuthorities().stream().noneMatch(a -> 
+            a.getAuthority().equals("ORGANIZADOR") || a.getAuthority().equals("ADMIN") || a.getAuthority().equals("ADMINISTRADOR"));
+    }
+
     @GetMapping
     public String listarTodosLosEquipos(Model model) {
         model.addAttribute("equipos", equipoService.listarEquipos());
 
-        if (HomeController.rol == 0) {
+        if (esEspectador()) {
         	return "espectador/equipo/lista-equipos";
         }
         return "equipo/lista-equipos"; 

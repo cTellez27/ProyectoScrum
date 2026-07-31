@@ -1,21 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Panel de Administración</title>
-    <style>
-        body { font-family: sans-serif; padding: 20px; }
-        .seccion { margin-bottom: 40px; border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
-        .btn-aprobar { background-color: #28a745; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; border: none; cursor: pointer;}
-        .btn-asignar { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;}
-        .alerta { padding: 10px; margin-bottom: 10px; border-radius: 4px; }
-        .alerta-exito { background-color: #d4edda; color: #155724; }
-        .alerta-error { background-color: #f8d7da; color: #721c24; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        select { padding: 8px; margin-right: 10px; min-width: 200px;}
-    </style>
-</head>
+<head th:replace="~{fragments/header :: head(title='Panel de Administración')}"></head>
+
 <body>
+    <div th:replace="~{fragments/header :: sidebar}"></div>
+    <div th:replace="~{fragments/boton-volver :: back(url=@{/index})}"></div>
 
     <h1>Panel de Administración</h1>
     <a th:href="@{/}" style="float: right;">Volver al Inicio</a>
@@ -81,5 +70,6 @@
         </form>
     </div>
 
+    <th:block th:replace="~{fragments/header :: scripts}"></th:block>
 </body>
 </html>

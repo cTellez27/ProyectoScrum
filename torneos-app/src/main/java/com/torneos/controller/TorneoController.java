@@ -21,11 +21,20 @@ public class TorneoController {
     @Autowired
     private TorneoService torneoService;
 
+    private boolean esEspectador() {
+        org.springframework.security.core.Authentication auth = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated() || auth instanceof org.springframework.security.authentication.AnonymousAuthenticationToken) {
+            return true;
+        }
+        return auth.getAuthorities().stream().noneMatch(a -> 
+            a.getAuthority().equals("ORGANIZADOR") || a.getAuthority().equals("ADMIN") || a.getAuthority().equals("ADMINISTRADOR"));
+    }
+
     @GetMapping
     public String listarTorneos(Model model) {
         model.addAttribute("torneos", torneoService.listarTorneos());
         
-        if (HomeController.rol == 0) {
+        if (esEspectador()) {
         	return "espectador/torneo/lista-torneos";
         }
         return "torneo/lista-torneos"; 
@@ -38,7 +47,7 @@ public class TorneoController {
         if (torneoOpt.isPresent()) {
             model.addAttribute("torneo", torneoOpt.get());
             
-            if (HomeController.rol == 0) {
+            if (esEspectador()) {
             	return "espectador/torneo/dashboard-torneo";
             }
             

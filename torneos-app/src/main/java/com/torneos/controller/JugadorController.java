@@ -2,12 +2,17 @@ package com.torneos.controller;
 
 import com.torneos.dto.EquipoDTO;
 import com.torneos.dto.JugadorDTO;
+import com.torneos.dto.PartidoDTO;
+import com.torneos.dto.TarjetaDTO;
 import com.torneos.servicio.EquipoService;
 import com.torneos.servicio.JugadorService;
+import com.torneos.servicio.PartidoService;
+import com.torneos.servicio.TarjetaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -21,6 +26,11 @@ public class JugadorController {
     @Autowired
     private EquipoService equipoService;
 
+    @Autowired
+    private PartidoService partidoService;
+
+    @Autowired
+    private TarjetaService tarjetaService;
 
     @GetMapping
     public String gestionarJugadores(@PathVariable Long idEquipo, Model model) {
@@ -29,9 +39,12 @@ public class JugadorController {
                 .orElseThrow(() -> new RuntimeException("Equipo no encontrado"));
         
         List<JugadorDTO> jugadores = jugadorService.listarJugadoresPorEquipo(idEquipo);
+        List<PartidoDTO> partidosEquipo = partidoService.listarPartidosPorEquipo(idEquipo);
 
         model.addAttribute("equipo", equipo);
         model.addAttribute("jugadores", jugadores);
+        model.addAttribute("partidosEquipo", partidosEquipo);
+        model.addAttribute("tienePartidos", !partidosEquipo.isEmpty());
         model.addAttribute("nuevoJugador", new JugadorDTO());
         model.addAttribute("idEquipo", idEquipo);
 
@@ -44,6 +57,16 @@ public class JugadorController {
         
         jugadorService.guardarJugador(jugadorDTO, idEquipo);
         
+        return "redirect:/equipos/" + idEquipo + "/jugadores";
+    }
+
+    @PostMapping("/tarjetas/registrar")
+    public String registrarTarjetaDesdeJugador(@PathVariable Long idEquipo,
+                                               @ModelAttribute TarjetaDTO tarjetaDTO,
+                                               RedirectAttributes attributes) {
+        tarjetaService.registrarTarjeta(tarjetaDTO);
+
+        attributes.addFlashAttribute("mensajeExito", "Tarjeta registrada para " + tarjetaDTO.getIdJugador() + ".");
         return "redirect:/equipos/" + idEquipo + "/jugadores";
     }
 
