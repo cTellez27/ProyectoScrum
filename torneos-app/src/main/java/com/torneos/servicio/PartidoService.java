@@ -7,6 +7,7 @@ import java.util.Optional;
 public interface PartidoService {
 
     List<PartidoDTO> listarPartidosPorTorneo(Long idTorneo);
+    List<PartidoDTO> listarPartidosPorEquipo(Long idEquipo);
     
     Optional<PartidoDTO> buscarPorId(Long idPartido);
 

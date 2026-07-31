@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 
 <div th:fragment="back(url)">
-    <a th:href="${url}" class="btn-volver-atras">
+    <div th:replace="~{fragments/header :: sidebar}"></div>
+    <a th:href="${url}" class="btn-volver-atras" sec:authorize="!hasAnyAuthority('ADMIN', 'ADMINISTRADOR', 'ORGANIZADOR')">
         <i class="bi bi-arrow-left-circle-fill"></i> Volver
     </a>
 </div>

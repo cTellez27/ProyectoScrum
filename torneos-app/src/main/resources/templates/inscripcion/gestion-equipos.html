@@ -5,7 +5,7 @@
 
 <body>
 	
-	<div th:replace="~{fragments/boton-volver :: back(url=@{/torneos/4})}"></div>
+	<div th:replace="~{fragments/boton-volver :: back(url=@{|/torneos/${torneoId}|})}"></div>
 	
     <div class="container mt-4">
         

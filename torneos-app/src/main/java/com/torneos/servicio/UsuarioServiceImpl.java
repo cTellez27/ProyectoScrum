@@ -76,7 +76,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             if (dto.getContrasenaUsuario() != null && !dto.getContrasenaUsuario().isEmpty()) {
                 usuario.setContrasenaUsuario(passwordEncoder.encode(dto.getContrasenaUsuario()));
             }
-            // Mantenemos el rol y estado que ya tenía (o actualizamos si es admin)
+            usuario.setActivo(dto.isActivo());
         }
 
         // Mapeo de campos comunes usando el mapper
@@ -89,5 +89,27 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public void eliminarUsuario(Long id) {
         usuarioRepository.deleteById(id);
+    }
+
+    @Override
+    public void aprobarUsuario(Long id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + id));
+        usuario.setActivo(true);
+        usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public List<UsuarioDTO> listarPendientes() {
+        return usuarioRepository.findByRolAndActivo("ORGANIZADOR", false).stream()
+                .map(usuarioMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UsuarioDTO> listarOrganizadores() {
+        return usuarioRepository.findByRolAndActivo("ORGANIZADOR", true).stream()
+                .map(usuarioMapper::toDTO)
+                .collect(Collectors.toList());
     }
 }

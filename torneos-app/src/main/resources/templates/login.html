@@ -1,48 +1,212 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Login</title>
+
+<head th:replace="~{fragments/header :: head(title='Iniciar Sesión - SGTF')}"></head>
+
+<body class="login-liquid-body">
+
+    <div class="login-liquid-bg"></div>
+
+    <div class="login-container-wrapper">
+        <div class="login-glass-card">
+            
+            <div class="text-center mb-4">
+                <div class="login-brand-icon mb-2">
+                    ⚽
+                </div>
+                <h2 class="text-white fw-bold h3 mb-1">Iniciar Sesión</h2>
+                <p class="text-muted small">Sistema de Gestión de Torneos de Fútbol</p>
+            </div>
+
+            <!-- MENSAJES DE ESTADO -->
+            <div th:if="${param.error}" class="alert alert-danger alert-glass text-center small mb-3" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-1"></i> Usuario o contraseña incorrectos, o cuenta no activada.
+            </div>
+
+            <div th:if="${param.registrado}" class="alert alert-success alert-glass text-center small mb-3" role="alert">
+                <i class="bi bi-check-circle-fill me-1"></i> ¡Registro exitoso! Por favor inicia sesión.
+            </div>
+
+            <div th:if="${param.logout}" class="alert alert-info alert-glass text-center small mb-3" role="alert">
+                <i class="bi bi-info-circle-fill me-1"></i> Has cerrado sesión correctamente.
+            </div>
+
+            <form th:action="@{/login}" method="post" class="needs-validation" novalidate>
+                <div class="mb-3 position-relative">
+                    <label class="form-label text-light small fw-bold">Correo Electrónico</label>
+                    <div class="position-relative">
+                        <i class="bi bi-envelope-fill input-icon"></i>
+                        <input type="email" name="username" class="form-control glass-input" placeholder="correo@ejemplo.com" required autofocus />
+                    </div>
+                </div>
+
+                <div class="mb-4 position-relative">
+                    <label class="form-label text-light small fw-bold">Contraseña</label>
+                    <div class="position-relative">
+                        <i class="bi bi-lock-fill input-icon"></i>
+                        <input type="password" name="password" class="form-control glass-input" placeholder="••••••••" required />
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-liquid-glass mb-3">
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Ingresar al Sistema
+                </button>
+            </form>
+
+            <div class="text-center mt-3 pt-3 border-top border-secondary border-opacity-25">
+                <p class="text-muted small mb-2">¿No tienes una cuenta aún?</p>
+                <a th:href="@{/registro}" class="btn btn-outline-glass btn-sm w-100 mb-2">
+                    <i class="bi bi-person-plus-fill me-1"></i> Registrarse como Organizador
+                </a>
+                <a th:href="@{/home}" class="text-muted small text-decoration-none d-block mt-2">
+                    <i class="bi bi-arrow-left me-1"></i> Volver a la página principal
+                </a>
+            </div>
+
+        </div>
+    </div>
+
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f2f5; }
-        .login-container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 350px; }
-        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        button:hover { background-color: #0056b3; }
-        .error { color: red; text-align: center; margin-bottom: 10px; font-size: 0.9em; }
-        .exito { color: green; text-align: center; margin-bottom: 10px; font-size: 0.9em; }
+        /* === FONDO LIQUID GRADIENT === */
+        body.login-liquid-body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a0f1d;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .login-liquid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(-45deg, #091325, #08331d, #0f244a, #13422a);
+            background-size: 400% 400%;
+            animation: gradientLiquid 14s ease infinite;
+            z-index: 1;
+        }
+
+        @keyframes gradientLiquid {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .login-container-wrapper {
+            position: relative;
+            z-index: 2;
+            padding: 1.5rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* === TARJETA GLASSMORPHISM === */
+        .login-glass-card {
+            background: rgba(20, 26, 36, 0.65);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 1.5rem;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-brand-icon {
+            font-size: 3rem;
+            line-height: 1;
+            filter: drop-shadow(0 4px 10px rgba(76, 175, 80, 0.4));
+        }
+
+        /* === INPUTS GLASS CON ICONO === */
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8a939b;
+            font-size: 1.1rem;
+            z-index: 5;
+            transition: color 0.3s ease;
+        }
+
+        .glass-input {
+            background: rgba(12, 16, 24, 0.65) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            color: #ffffff !important;
+            border-radius: 0.75rem !important;
+            padding: 0.75rem 1rem 0.75rem 2.75rem !important;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease !important;
+        }
+
+        .glass-input:focus {
+            background: rgba(12, 16, 24, 0.9) !important;
+            border-color: #4CAF50 !important;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.35) !important;
+        }
+
+        .glass-input:focus + .input-icon,
+        .position-relative:focus-within .input-icon {
+            color: #4CAF50;
+        }
+
+        /* === BOTÓN LIQUID GLASS CON BLUR === */
+        .btn-liquid-glass {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.85), rgba(13, 110, 253, 0.85));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #ffffff !important;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            border-radius: 0.75rem;
+            padding: 0.85rem 1.5rem;
+            width: 100%;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.35);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-liquid-glass:hover {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.95), rgba(13, 110, 253, 0.95));
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 12px 30px rgba(76, 175, 80, 0.5);
+        }
+
+        .btn-outline-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #e2e6ea !important;
+            font-weight: 600;
+            border-radius: 0.75rem;
+            padding: 0.6rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-glass:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #4CAF50;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+
+        .alert-glass {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 0.75rem;
+        }
     </style>
-</head>
-<body>
 
-<div class="login-container">
-    <h2 style="text-align: center;">Iniciar Sesión</h2>
-
-    <div th:if="${param.error}" class="error">
-        Usuario o contraseña incorrectos, o cuenta no activada.
-    </div>
-
-    <div th:if="${param.registrado}" class="exito">
-        ¡Registro exitoso! Por favor inicia sesión.
-    </div>
-
-    <div th:if="${param.logout}" class="exito">
-        Has cerrado sesión correctamente.
-    </div>
-
-    <form th:action="@{/login}" method="post">
-        <label>Correo Electrónico:</label>
-        <input type="email" name="username" placeholder="correo@ejemplo.com" required autofocus />
-
-        <label>Contraseña:</label>
-        <input type="password" name="password" placeholder="****" required />
-
-        <button type="submit">Ingresar</button>
-    </form>
-
-    <p style="text-align: center; margin-top: 15px;">
-        <a th:href="@{/registro}">¿No tienes cuenta? Regístrate aquí</a>
-    </p>
-</div>
-
+    <th:block th:replace="~{fragments/header :: scripts}"></th:block>
 </body>
 </html>

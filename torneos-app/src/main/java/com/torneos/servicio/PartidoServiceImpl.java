@@ -44,6 +44,15 @@ public class PartidoServiceImpl implements PartidoService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<PartidoDTO> listarPartidosPorEquipo(Long idEquipo) {
+        return partidoRepository.findByEquipoLocal_IdOrEquipoVisitante_Id(idEquipo, idEquipo)
+                .stream()
+                .map(partidoMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Optional<PartidoDTO> buscarPorId(Long idPartido) {
         return partidoRepository.findById(idPartido)
                 .map(partidoMapper::toDTO);

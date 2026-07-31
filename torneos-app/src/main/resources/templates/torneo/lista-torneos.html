@@ -5,7 +5,7 @@
 <head th:replace="~{fragments/header :: head(title='Gestión de Torneos')}"></head>
 
 <body>
-    <div th:replace="~{fragments/boton-volver :: back(url=@{/})}"></div>
+    <div th:replace="~{fragments/boton-volver :: back(url=@{/index})}"></div>
     
     <div class="container">
         <div class="main-card" style="max-width: 1200px;">
@@ -13,9 +13,6 @@
             <div class="bg-success-header d-flex justify-content-between align-items-center p-3">
                 <h1 class="h4 mb-0 text-white"><i class="bi bi-trophy-fill me-2"></i> Gestión de Torneos</h1>
                 <div>
-                    <a th:href="@{/canchas}" class="btn btn-light fw-bold text-dark me-2">
-                        <i class="bi bi-pin-map-fill"></i> Canchas
-                    </a>
                     <a th:href="@{/torneos/nuevo}" class="btn btn-light fw-bold text-dark">
                         <i class="bi bi-plus-circle-fill"></i> Nuevo Torneo
                     </a>
@@ -43,7 +40,7 @@
                         </tr>
                         <tr th:each="torneo : ${torneos}">
                             <td class="fw-bold">
-                                <a th:href="@{/torneos/{id}(id=${torneo.id})}" class="text-black text-decoration-none stretched-link"
+                                <a th:href="@{/torneos/{id}(id=${torneo.id})}" class="text-black text-decoration-none"
                                    th:text="${torneo.nombre}"></a>
                             </td>
                             <td th:text="${torneo.ciudad}"></td>

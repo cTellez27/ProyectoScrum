@@ -1,98 +1,316 @@
-/* === TEMA GLOBAL === */
+/* === REGLA GLOBAL DE TEXTO BLANCO DE ALTO CONTRASTE === */
+body, p, label, .form-label, span, div, h1, h2, h3, h4, h5, h6,
+.card, .main-card, .dashboard-card,
+table, th, td, tr,
+.form-control, .form-select, input, select, textarea, option,
+.text-dark, .text-black, .text-secondary {
+    color: #ffffff !important;
+}
+
+.text-muted, small.text-muted {
+    color: #cbd5e1 !important;
+}
+
+::placeholder,
+.form-control::placeholder,
+input::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+    opacity: 1 !important;
+}
+
+select option {
+    background-color: #161b22 !important;
+    color: #ffffff !important;
+}
+
+/* === TEMA GLOBAL LIQUID GLASS === */
 body {
-    /* Tipografía de tu index */
-    font-family: 'Montserrat', 'Arial', sans-serif;
-    /* Fondo oscuro de tu index */
-    background-color: #212529; 
-    color: #f8f9fa;
+    font-family: 'Montserrat', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(-45deg, #091325, #08331d, #0f244a, #13422a);
+    background-size: 400% 400%;
+    animation: gradientLiquid 16s ease infinite;
+    background-attachment: fixed;
+    color: #ffffff !important;
+    min-height: 100vh;
+}
+
+@keyframes gradientLiquid {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* Títulos con fuente gruesa */
 h1, h2, h3, h4, h5, .table thead th {
-    font-weight: 700; /* Títulos más gruesos */
+    font-weight: 700;
     text-transform: uppercase;
+    color: #ffffff !important;
 }
 h1 {
-    font-weight: 900; /* Título principal super grueso */
+    font-weight: 900;
+    color: #ffffff !important;
 }
 
-/* === ESTILO DE TARJETA === */
-/* La "caja" centrada oscura de tu index */
-.main-card {
+/* === ESPACIADO DE SEGURIDAD GLOBAL (EVITA SUPERPOSICIÓN DEL BOTÓN SIDEBAR) === */
+body > .container,
+body > main,
+.container.mt-5,
+.container.mt-4 {
+    margin-top: 5.5rem !important;
+}
+
+/* === ESTILO DE TARJETA GLASSMORPHISM GLOBAL === */
+.main-card, .main-card-home, .dashboard-card, .card {
     max-width: 900px;
     margin: 3rem auto;
-    background-color: #343a40; /* Un gris oscuro, no negro */
-    border-radius: 1rem;
+    background: rgba(20, 26, 36, 0.72) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 1.25rem !important;
     padding: 2.5rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    margin-top: 5rem !important; /* Margen superior para el botón Volver */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    margin-top: 5.5rem !important;
 }
 
 /* Título verde del menú */
-.menu-title {
-    color: #4CAF50; /* Verde fútbol */
+.menu-title, .menu-title-home {
+    color: #4CAF50;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 1.5rem;
 }
 
-/* === BOTONES DEL INDEX === */
-.btn-main {
+/* === BOTONES DEL SISTEMA CON CRISTAL Y RESPLANDOR === */
+.btn-main, .btn-main-home {
     font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
     padding: 1.25rem;
-    transition: transform 0.2s ease-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
-.btn-main:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-}
-
-.btn-main-green {
-    background-color: #4CAF50;
-    color: #ffffff;
-    border: none;
-}
-.btn-main-green:hover {
-    background-color: #5cb85c;
-    color: #ffffff;
+.btn-main:hover, .btn-main-home:hover {
+    transform: translateY(-3px) scale(1.02);
 }
 
-.btn-main-white {
-    background-color: #f8f9fa;
-    color: #212529;
-    border: none;
+.btn-primary, .btn-main-blue-home {
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.85), rgba(111, 66, 193, 0.85)) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.35) !important;
+    color: #ffffff !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
-.btn-main-white:hover {
-    background-color: #e2e6ea;
-    color: #212529;
+.btn-primary:hover, .btn-main-blue-home:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(13, 110, 253, 0.5) !important;
+    color: #ffffff !important;
 }
 
-/* === TABLAS (Para listas) === */
-.table thead {
-    background-color: #4CAF50; /* Verde */
-    color: #ffffff;
-    text-transform: uppercase;
-    font-weight: 700;
+.btn-success, .btn-main-green, .btn-main-green-home {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.85), rgba(32, 201, 151, 0.85)) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.35) !important;
+    color: #ffffff !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
+.btn-success:hover, .btn-main-green:hover, .btn-main-green-home:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.5) !important;
+    color: #ffffff !important;
+}
+
+.btn-light,
+a.btn-light,
+button.btn-light {
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn-light:hover,
+a.btn-light:hover,
+button.btn-light:hover {
+    background: #4CAF50 !important;
+    border-color: #4CAF50 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4) !important;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.85), rgba(253, 126, 20, 0.85)) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 6px 20px rgba(255, 193, 7, 0.35) !important;
+    color: #111111 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.btn-warning:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(255, 193, 7, 0.5) !important;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.85), rgba(214, 51, 132, 0.85)) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.35) !important;
+    color: #ffffff !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.btn-danger:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(220, 53, 69, 0.5) !important;
+}
+
+.btn-main-white, .btn-main-white-home {
+    background: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.btn-main-white:hover, .btn-main-white-home:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: translateY(-2px) scale(1.02);
+    color: #ffffff !important;
+}
+
+/* === CONTROLES DE FORMULARIO GLASS === */
+.form-control, .form-select, .form-control-dark, .form-select-dark {
+    background-color: rgba(12, 16, 24, 0.65) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    border-radius: 0.75rem !important;
+}
+
+.form-control:focus, .form-select:focus, .form-control-dark:focus, .form-select-dark:focus {
+    background-color: rgba(12, 16, 24, 0.9) !important;
+    border-color: #4CAF50 !important;
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.35) !important;
+    color: #ffffff !important;
+}
+
+.form-select option {
+    background-color: #161b22;
+    color: #ffffff;
+}
+
+/* === TABLAS PURA GLASSMORPHISM DE ALTA GAMA (LINEAR / VERCEL / TABLER) === */
+.table-responsive {
+    border-radius: 1.25rem !important;
+    overflow: hidden !important;
+    margin-top: 1rem;
+}
+
+.table, 
+.table-dark,
+.table-striped,
+.table-hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 1.25rem !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    overflow: hidden !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45) !important;
+    color: #f8f9fa !important;
+    margin-bottom: 0 !important;
+}
+
+.table thead,
+.table-primary,
+.table-success,
+.table-dark thead,
+.table thead tr {
+    background: rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.table thead th,
+.table th {
+    background: transparent !important;
+    color: #94a3b8 !important;
+    font-size: 0.8rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    padding: 1.1rem 1.25rem !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.table tbody tr {
+    background: transparent !important;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                background-color 0.2s ease, 
+                box-shadow 0.2s ease !important;
+}
+
+.table tbody td,
+.table td {
+    background: transparent !important;
+    padding: 1.1rem 1.25rem !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: #e2e8f0 !important;
+    vertical-align: middle !important;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* Neutralizar completamente filas alternas opacas de Bootstrap */
+.table-striped>tbody>tr:nth-of-type(odd)>*,
+.table-striped>tbody>tr:nth-of-type(even)>*,
+.table-dark>tbody>tr>*,
+.table-primary>tbody>tr>*,
+.table-hover>tbody>tr:hover>* {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    color: inherit !important;
+}
+
+/* Fila Hover con cristal deslumbrante y elevación suave */
+.table tbody tr:hover,
 .table-hover tbody tr:hover {
-    background-color: #495057;
-    color: #ffffff;
+    background-color: rgba(76, 175, 80, 0.12) !important;
+    transform: translateY(-2px) scale(1.008) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+    z-index: 5 !important;
+    position: relative !important;
 }
 
 /* === BOTÓN VOLVER ATRÁS === */
 .btn-volver-atras {
     position: absolute;
     top: 20px;
-    left: 20px;
-    
+    left: 155px !important;
     font-size: 1.2rem;
     font-weight: 700;
     text-transform: uppercase;
     text-decoration: none;
-    color: #adb5bd; /* Gris de Bootstrap */
+    color: #adb5bd;
     z-index: 10;
     transition: color 0.2s, transform 0.2s;
 }
@@ -108,113 +326,39 @@ h1 {
     transform: translateX(-3px);
 }
 
-/* === MODAL DE ELIMINACIÓN === */
-.modal-confirm-delete .modal-content {
-    background-color: #ffffff;
-    color: #212529;
+/* === MODAL GLASS === */
+.modal-content {
+    background: rgba(20, 26, 36, 0.85) !important;
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 1.25rem !important;
+    color: #ffffff !important;
 }
-.modal-confirm-delete .modal-header {
-    background-color: #dc3545; /* Rojo */
-    color: #ffffff;
-    border-bottom: none;
+.modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
-.modal-confirm-delete .modal-header .btn-close {
-    filter: invert(1) grayscale(100%) brightness(200%);
-}
-
-/* === BOTÓN ELIMINAR GLOBAL (Hover) === */
-.btn-delete-global {
-    display: none; /* Oculto por defecto */
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-}
-tr:hover .btn-delete-global {
-    display: inline-block;
-}
-tr {
-    position: relative;
+.modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* === TARJETA AZUL (Para Admin) === */
+/* === CABECERAS DE TARJETAS GLASS === */
 .bg-primary-header {
-    background-color: #0d6efd;
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.85), rgba(111, 66, 193, 0.85)) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
     color: white;
     padding: 1rem 1.5rem;
-    border-radius: 0.5rem 0.5rem 0 0;
-}
-.table-primary {
-    background-color: #0d6efd !important;
-    color: #ffffff;
+    border-radius: 1.25rem 1.25rem 0 0 !important;
 }
 
-/* === TARJETA VERDE (Para Flujo Principal) === */
 .bg-success-header {
-    background-color: #4CAF50;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.85), rgba(32, 201, 151, 0.85)) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
     color: white;
     padding: 1rem 1.5rem;
-    border-radius: 0.5rem 0.5rem 0 0;
-}
-.table-success {
-    background-color: #4CAF50 !important;
-    color: #ffffff;
-}
-
-
-
-/* La "caja" centrada oscura del home */
-.main-card-home {
-    max-width: 900px;
-    margin: 3rem auto;
-    background-color: #343a40; /* Un gris oscuro, no negro */
-    border-radius: 1rem;
-    padding: 2.5rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    margin-top: 5rem !important; /* Margen superior para el botón Volver */
-}
-
-/* Título verde del menú */
-.menu-title-home {
-    color: #4CAF50; /* Verde fútbol */
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1.5rem;
-}
-
-/* === BOTONES DEL HOME === */
-.btn-main-home {
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: 3.25rem;
-    transition: transform 0.2s ease-out;
-}
-.btn-main-home:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-}
-
-.btn-main-green-home {
-    background-color: #4CAF50;
-    color: #ffffff;
-    border: none;
-}
-.btn-main-green-home:hover {
-    background-color: #5cb85c;
-    color: #ffffff;
-}
-
-.btn-main-white-home {
-    background-color: #f8f9fa;
-    color: #212529;
-    border: none;
-}
-.btn-main-white-home:hover {
-    background-color: #e2e6ea;
-    color: #212529;
+    border-radius: 1.25rem 1.25rem 0 0 !important;
 }
 
 /* === Partidos pendientes === */
@@ -225,4 +369,644 @@ tr {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 1.5rem;
+}
+
+/* === BOTÓN VOLVER ATRÁS === */
+.btn-volver-atras {
+    position: absolute;
+    top: 20px;
+    left: 155px !important;
+    
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #adb5bd; /* Gris de Bootstrap */
+    z-index: 10;
+    transition: color 0.2s, transform 0.2s;
+}
+
+/* === Badges de Selección de Posición === */
+.position-badge {
+    font-weight: 700;
+    min-width: 65px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.position-badge:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   === ESTILOS DEL SIDEBAR DE NAVEGACIÓN ===
+   ========================================================================== */
+
+/* Logo Activador en Esquina Superior Izquierda */
+/* Logo Activador en Esquina Superior Izquierda */
+.sidebar-logo-trigger {
+    position: fixed;
+    top: 18px;
+    left: 20px;
+    z-index: 1040;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.sidebar-logo-trigger:focus-visible {
+    outline: 2px solid #4CAF50;
+    outline-offset: 4px;
+    border-radius: 50px;
+}
+
+.sidebar-logo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(20, 26, 36, 0.78) !important;
+    backdrop-filter: blur(18px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    color: #ffffff !important;
+    padding: 8px 18px;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.sidebar-logo-trigger:hover .sidebar-logo-badge {
+    background: rgba(20, 26, 36, 0.92) !important;
+    border-color: #4CAF50 !important;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(76, 175, 80, 0.4) !important;
+}
+
+.sidebar-logo-icon {
+    font-size: 1.25rem;
+}
+
+.sidebar-logo-brand {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: #4CAF50;
+}
+
+.sidebar-hamburger-icon {
+    font-size: 1.2rem;
+    color: #adb5bd;
+    margin-left: 4px;
+    transition: color 0.2s ease;
+}
+
+.sidebar-logo-trigger:hover .sidebar-hamburger-icon {
+    color: #ffffff;
+}
+
+/* Fondo Oscuro de Superposición (Backdrop) */
+.sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(3px);
+    z-index: 1045;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 250ms ease, visibility 250ms ease;
+}
+
+.sidebar-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Contenedor del Sidebar Desplegable */
+.app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background-color: #1e2124;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 250ms ease, 
+                visibility 250ms ease;
+}
+
+.app-sidebar.open {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Cabecera del Sidebar */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    background-color: #181a1d;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sidebar-brand-icon {
+    font-size: 1.75rem;
+}
+
+.sidebar-brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-brand-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: #4CAF50;
+    letter-spacing: 1px;
+    line-height: 1.1;
+}
+
+.sidebar-brand-sub {
+    font-size: 0.7rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-close-btn {
+    background: transparent;
+    border: none;
+    color: #adb5bd;
+    font-size: 1.2rem;
+    padding: 6px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.sidebar-close-btn:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-close-btn:focus-visible {
+    outline: 2px solid #4CAF50;
+}
+
+/* Cuerpo y Elementos de Navegación */
+.sidebar-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 16px;
+}
+
+.sidebar-section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #4CAF50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    margin-bottom: 4px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    color: #ced4da;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.sidebar-link:hover {
+    background-color: #2b2e33;
+    color: #4CAF50;
+    transform: translateX(4px);
+}
+
+.sidebar-link:focus-visible {
+    outline: 2px solid #4CAF50;
+    outline-offset: -2px;
+}
+
+.sidebar-link.active {
+    background-color: #4CAF50;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.35);
+}
+
+.sidebar-link.active .sidebar-icon {
+    color: #ffffff;
+}
+
+.sidebar-icon {
+    font-size: 1.15rem;
+    color: #8a939b;
+    transition: color 0.2s ease;
+}
+
+.sidebar-link:hover .sidebar-icon {
+    color: #4CAF50;
+}
+
+/* Pie del Sidebar */
+.sidebar-footer {
+    padding: 16px;
+    background-color: #181a1d;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-logout-btn {
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.85), rgba(185, 28, 28, 0.85)) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    border-radius: 0.75rem !important;
+    padding: 10px 16px !important;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.35) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer;
+}
+
+.sidebar-logout-btn .sidebar-icon,
+.sidebar-logout-btn i {
+    color: #ffffff !important;
+    font-size: 1.2rem;
+}
+
+.sidebar-logout-btn:hover {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.95), rgba(220, 53, 69, 0.95)) !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.5) !important;
+}
+
+/* Adaptación Responsiva */
+@media (max-width: 768px) {
+    .app-sidebar {
+        width: 250px;
+    }
+    
+    .sidebar-logo-brand {
+        display: none;
+    }
+    
+    .btn-volver-atras {
+        left: 110px !important;
+    }
+}
+
+/* ==========================================================================
+   === DASHBOARD DE ADMINISTRACIÓN DEPORTIVA (MODERNO) ===
+   ========================================================================== */
+
+.dashboard-wrapper {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1.5rem 3rem 1.5rem;
+    margin-top: 4.5rem !important;
+}
+
+/* Header del Dashboard */
+.dashboard-header {
+    background-color: #242425;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.dashboard-welcome-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+}
+
+.dashboard-welcome-sub {
+    color: #adb5bd;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.dashboard-header-badge {
+    background-color: #1e2124;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ced4da;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.user-profile-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #1e2124;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-weight: 700;
+}
+
+.user-avatar-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+/* Grilla de Tarjetas Estadísticas */
+.dashboard-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background-color: #242425;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.85rem;
+    padding: 1.25rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    border-color: #4CAF50;
+}
+
+.stat-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.stat-card-icon.green { background-color: rgba(76, 175, 80, 0.15); color: #4CAF50; }
+.stat-card-icon.blue { background-color: rgba(13, 110, 253, 0.15); color: #0d6efd; }
+.stat-card-icon.purple { background-color: rgba(111, 66, 193, 0.15); color: #6f42c1; }
+.stat-card-icon.yellow { background-color: rgba(255, 193, 7, 0.15); color: #ffc107; }
+.stat-card-icon.cyan { background-color: rgba(13, 202, 240, 0.15); color: #0dcaf0; }
+.stat-card-icon.orange { background-color: rgba(253, 126, 20, 0.15); color: #fd7e14; }
+
+.stat-card-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #8a939b;
+    margin-bottom: 0.25rem;
+}
+
+.stat-card-value {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+}
+
+.stat-trend {
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.stat-trend.positive { color: #4CAF50; }
+.stat-trend.neutral { color: #8a939b; }
+
+/* Contenedores Principales */
+.dashboard-card {
+    background-color: #242425;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.85rem;
+    padding: 1.5rem;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
+    height: 100%;
+}
+
+.dashboard-card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard-link {
+    color: #4CAF50;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: color 0.2s ease;
+}
+.dashboard-link:hover { color: #5cb85c; text-decoration: underline; }
+
+/* Calendario Mini UI */
+.mini-calendar {
+    background-color: #1e2124;
+    border-radius: 0.6rem;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.calendar-header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+}
+
+.calendar-day-header {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #8a939b;
+    padding: 4px 0;
+}
+
+.calendar-day {
+    padding: 8px 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    color: #ced4da;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.calendar-day:hover {
+    background-color: #2b2e33;
+    color: #4CAF50;
+}
+
+.calendar-day.other-month {
+    color: #495057;
+    cursor: default;
+}
+
+.calendar-day.selected {
+    background-color: #4CAF50 !important;
+    color: #ffffff !important;
+    font-weight: 900;
+}
+
+.calendar-day.has-match::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+}
+
+.calendar-day.selected.has-match::after {
+    background-color: #ffffff;
+}
+
+/* Timeline Actividad Reciente */
+.activity-timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.activity-item:last-child { border-bottom: none; }
+
+.activity-icon-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.activity-content { flex: 1; }
+
+.activity-text {
+    font-size: 0.88rem;
+    color: #e2e6ea;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.activity-time {
+    font-size: 0.75rem;
+    color: #6c757d;
+}
+
+/* Donut Chart visual */
+.donut-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+.legend-color-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+/* Empty State Global */
+.empty-state {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: #6c757d;
+}
+.empty-state i {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #495057;
+}
+
+@media (max-width: 992px) {
+    .dashboard-wrapper {
+        padding: 0 1rem 2rem 1rem;
+    }
 }

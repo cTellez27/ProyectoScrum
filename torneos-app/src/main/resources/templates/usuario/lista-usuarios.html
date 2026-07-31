@@ -4,7 +4,7 @@
 <head th:replace="~{fragments/header :: head(title='Gestión de Usuarios')}"></head>
 
 <body>
-    <div th:replace="~{fragments/boton-volver :: back(url=@{/})}"></div>
+    <div th:replace="~{fragments/boton-volver :: back(url=@{/index})}"></div>
 
     <div class="container">
         <div class="main-card" style="max-width: 1100px;">
@@ -40,8 +40,9 @@
                             <td th:text="${usuario.nombreUsuario}">Admin</td>
                             <td th:text="${usuario.correoUsuario}">admin@correo.com</td>
                             <td>
-                                <span th:if="${usuario.rol == 'ADMIN'}" class="badge bg-danger" th:text="${usuario.rol}"></span>
-                                <span th:if="${usuario.rol == 'ORGANIZADOR'}" class="badge bg-info text-dark" th:text="${usuario.rol}"></span>
+                                <span th:if="${usuario.rol == 'ADMIN' or usuario.rol == 'ADMINISTRADOR'}" class="badge bg-primary">ADMIN</span>
+                                <span th:if="${usuario.rol == 'ORGANIZADOR'}" class="badge bg-info text-dark">ORGANIZADOR</span>
+                                <span th:if="${usuario.rol != 'ADMIN' and usuario.rol != 'ADMINISTRADOR' and usuario.rol != 'ORGANIZADOR'}" class="badge bg-secondary" th:text="${usuario.rol}"></span>
                             </td>
                             <td>
                                 <span th:if="${usuario.activo == true}" class="badge bg-success">Sí</span>

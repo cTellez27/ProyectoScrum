@@ -22,6 +22,15 @@ public class InscripcionController {
     @Autowired
     private EquipoService equipoService;
 
+    private boolean esEspectador() {
+        org.springframework.security.core.Authentication auth = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated() || auth instanceof org.springframework.security.authentication.AnonymousAuthenticationToken) {
+            return true;
+        }
+        return auth.getAuthorities().stream().noneMatch(a -> 
+            a.getAuthority().equals("ORGANIZADOR") || a.getAuthority().equals("ADMIN") || a.getAuthority().equals("ADMINISTRADOR"));
+    }
+
     @GetMapping
     public String gestionarEquiposDelTorneo(@PathVariable Long idTorneo, Model model) {
         
@@ -35,7 +44,7 @@ public class InscripcionController {
         model.addAttribute("torneoId", idTorneo);
         model.addAttribute("equipos", equiposInscritos); 
 
-        if (HomeController.rol == 0) {
+        if (esEspectador()) {
         	return "espectador/torneo/lista-equipos-torneo";
         }
         

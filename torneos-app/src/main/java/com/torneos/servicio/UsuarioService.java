@@ -10,4 +10,7 @@ public interface UsuarioService {
     Optional<UsuarioDTO> buscarPorId(Long id);
     UsuarioDTO registrarUsuario(UsuarioDTO dto);
     void eliminarUsuario(Long id);
+    void aprobarUsuario(Long id);
+    List<UsuarioDTO> listarPendientes();
+    List<UsuarioDTO> listarOrganizadores();
 }

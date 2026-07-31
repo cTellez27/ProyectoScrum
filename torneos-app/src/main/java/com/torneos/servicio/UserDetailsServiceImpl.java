@@ -1,6 +1,5 @@
 package com.torneos.servicio;
 
-import com.torneos.modelo.Usuario;
 import com.torneos.repositorio.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
