@@ -37,6 +37,15 @@ public class PartidoController {
             a.getAuthority().equals("ORGANIZADOR") || a.getAuthority().equals("ADMIN") || a.getAuthority().equals("ADMINISTRADOR"));
     }
 
+    @GetMapping
+    public String gestionarPartidosGeneral(Model model) {
+        List<TorneoDTO> torneos = torneoService.listarTorneos();
+        if (!torneos.isEmpty()) {
+            return "redirect:/partidos/torneo/" + torneos.get(0).getId();
+        }
+        return "redirect:/torneos";
+    }
+
     @GetMapping("/pendientes")
     public String listarPartidosPendientes(Model model) {
         model.addAttribute("partidosPendientes", partidoService.listarPartidosPendientes());

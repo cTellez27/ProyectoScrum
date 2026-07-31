@@ -39,29 +39,40 @@
         
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Configuración para solo Fecha (ej. 2025-10-30)
-                flatpickr(".datepicker", {
-                    "locale": "es", // Español
-                    "altInput": true,
-                    "altFormat": "d/m/Y", // Formato que ve el usuario
-                    "dateFormat": "Y-m-d", // Formato que se envía a Spring
-                    "plugins": [new confirmDatePlugin({
-                        confirmText: "OK", // Texto del botón
-                        showAlways: true
-                    })]
+                function getAppendTo(element) {
+                    return element.closest('.modal-body') || element.closest('.modal') || document.body;
+                }
+
+                document.querySelectorAll('.datepicker').forEach(function(el) {
+                    flatpickr(el, {
+                        "locale": "es",
+                        "allowInput": true,
+                        "altInput": true,
+                        "altFormat": "d/m/Y",
+                        "dateFormat": "Y-m-d",
+                        "monthSelectorType": "dropdown",
+                        "appendTo": getAppendTo(el),
+                        "plugins": [new confirmDatePlugin({
+                            confirmText: "OK",
+                            showAlways: true
+                        })]
+                    });
                 });
                 
-                // Configuración para Fecha y Hora (ej. 2025-10-30T14:30)
-                flatpickr(".datetimepicker", {
-                    "locale": "es",
-                    "enableTime": true,
-                    "altInput": true,
-                    "altFormat": "d/m/Y H:i",
-                    "dateFormat": "Y-m-d\\TH:i", // Formato que Spring entiende
-                    "plugins": [new confirmDatePlugin({
-                        confirmText: "OK",
-                        showAlways: true
-                    })]
+                document.querySelectorAll('.datetimepicker').forEach(function(el) {
+                    flatpickr(el, {
+                        "locale": "es",
+                        "allowInput": true,
+                        "enableTime": true,
+                        "altInput": true,
+                        "altFormat": "d/m/Y H:i",
+                        "dateFormat": "Y-m-d\\TH:i",
+                        "appendTo": getAppendTo(el),
+                        "plugins": [new confirmDatePlugin({
+                            confirmText: "OK",
+                            showAlways: true
+                        })]
+                    });
                 });
             });
         </script>

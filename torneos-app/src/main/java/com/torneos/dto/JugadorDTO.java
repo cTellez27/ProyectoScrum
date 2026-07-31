@@ -7,6 +7,7 @@ public class JugadorDTO {
     private Long id;
     private String nombre;
     private String posicion;
+    @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE)
     private LocalDate fechaNacimiento;
 
     // No necesitamos el 'idEquipo' aquí, porque el controlador

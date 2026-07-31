@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.torneos.dto.TorneoDTO;
 import com.torneos.servicio.TorneoService;
@@ -75,15 +76,25 @@ public class TorneoController {
     }
 
     @PostMapping("/guardar")
-    public String guardarTorneo(@ModelAttribute TorneoDTO torneoDTO) {
+    public String guardarTorneo(@ModelAttribute TorneoDTO torneoDTO, RedirectAttributes redirectAttributes) {
+        boolean esEdicion = torneoDTO.getId() != null;
         torneoService.guardarTorneo(torneoDTO);
+        if (esEdicion) {
+            redirectAttributes.addFlashAttribute("mensajeExito", "Torneo actualizado correctamente.");
+        } else {
+            redirectAttributes.addFlashAttribute("mensajeExito", "Torneo creado correctamente.");
+        }
         return "redirect:/torneos";
     }
 
     @GetMapping("/eliminar/{id}")
-    public String eliminarTorneo(@PathVariable Long id) {
-        torneoService.eliminarTorneo(id);
+    public String eliminarTorneo(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        try {
+            torneoService.eliminarTorneo(id);
+            redirectAttributes.addFlashAttribute("mensajeExito", "Torneo eliminado correctamente.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("mensajeError", "No se puede eliminar el torneo porque está en uso o tiene registros vinculados.");
+        }
         return "redirect:/torneos";
-
     }
 }

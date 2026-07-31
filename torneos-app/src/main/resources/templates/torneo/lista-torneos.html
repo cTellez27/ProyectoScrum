@@ -5,6 +5,7 @@
 <head th:replace="~{fragments/header :: head(title='Gestión de Torneos')}"></head>
 
 <body>
+    <div th:replace="~{fragments/header :: sidebar}"></div>
     <div th:replace="~{fragments/boton-volver :: back(url=@{/index})}"></div>
     
     <div class="container">
@@ -48,18 +49,14 @@
                             <td th:text="${torneo.fechaFin}"></td>
                             <td th:text="${torneo.creadoPorNombre}"></td>
                             <td class="text-end">
+                                <a th:href="@{/torneos/editar/{id}(id=${torneo.id})}" class="btn btn-warning btn-sm me-1" title="Editar Torneo">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </a>
                                 <button type="button" class="btn btn-danger btn-sm"
                                         data-bs-toggle="modal" 
                                         th:data-bs-target="'#modalDeleteTorneo-' + ${torneo.id}">
                                     <i class="bi bi-trash-fill"></i>
                                 </button>
-                                
-                                <div th:replace="~{fragments/modal-eliminar :: modal(
-                                    modalId='modalDeleteTorneo-' + ${torneo.id},
-                                    modalTitle='Confirmar Eliminación',
-                                    modalBody='¿Seguro que deseas eliminar <strong>' + ${torneo.nombre} + '</strong>?',
-                                    modalConfirmUrl=@{/torneos/eliminar/{id}(id=${torneo.id})}
-                                )}"></div>
                             </td>
                         </tr>
                     </tbody>
@@ -67,6 +64,17 @@
             </div>
         </div>
     </div>
+
+    <!-- MODALES DE ELIMINACIÓN DE TORNEO (NIVEL PRINCIPAL) -->
+    <div th:each="torneo : ${torneos}">
+        <div th:replace="~{fragments/modal-eliminar :: modal(
+            modalId='modalDeleteTorneo-' + ${torneo.id},
+            modalTitle='Confirmar Eliminación',
+            modalBody='¿Seguro que deseas eliminar <strong>' + ${torneo.nombre} + '</strong>?',
+            modalConfirmUrl=@{/torneos/eliminar/{id}(id=${torneo.id})}
+        )}"></div>
+    </div>
+
     <th:block th:replace="~{fragments/header :: scripts}"></th:block>
 </body>
 </html>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/usuarios")
@@ -34,19 +35,25 @@ public class UsuarioController {
     }
 
     @PostMapping("/guardar")
-    public String guardarUsuario(@ModelAttribute UsuarioDTO usuario) {
-        // 1. Ya no recibimos 'String contrasena' aparte.
-        // 2. El DTO ya trae la contraseña adentro (usuario.getContrasenaUsuario())
-        
-        // Llamamos al método del servicio (asegúrate que en el servicio se llame igual)
-        usuarioService.registrarUsuario(usuario); 
-        
+    public String guardarUsuario(@ModelAttribute UsuarioDTO usuario, RedirectAttributes attributes) {
+        boolean esEdicion = usuario.getId() != null;
+        usuarioService.registrarUsuario(usuario);
+        if (esEdicion) {
+            attributes.addFlashAttribute("mensajeExito", "Usuario actualizado con éxito.");
+        } else {
+            attributes.addFlashAttribute("mensajeExito", "Usuario creado con éxito.");
+        }
         return "redirect:/usuarios";
     }
 
     @GetMapping("/eliminar/{id}")
-    public String eliminarUsuario(@PathVariable Long id) {
-        usuarioService.eliminarUsuario(id);
+    public String eliminarUsuario(@PathVariable Long id, RedirectAttributes attributes) {
+        try {
+            usuarioService.eliminarUsuario(id);
+            attributes.addFlashAttribute("mensajeExito", "Usuario eliminado con éxito.");
+        } catch (Exception e) {
+            attributes.addFlashAttribute("mensajeError", "No se puede eliminar el usuario.");
+        }
         return "redirect:/usuarios";
     }
 }

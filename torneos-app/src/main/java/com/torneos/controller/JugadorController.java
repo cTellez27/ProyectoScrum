@@ -60,6 +60,16 @@ public class JugadorController {
         return "redirect:/equipos/" + idEquipo + "/jugadores";
     }
 
+    @PostMapping("/editar/{idJugador}")
+    public String editarJugador(@PathVariable Long idEquipo,
+                                @PathVariable Long idJugador,
+                                @ModelAttribute JugadorDTO jugadorDTO,
+                                RedirectAttributes attributes) {
+        jugadorService.actualizarJugador(idJugador, jugadorDTO);
+        attributes.addFlashAttribute("mensajeExito", "Jugador actualizado con éxito.");
+        return "redirect:/equipos/" + idEquipo + "/jugadores";
+    }
+
     @PostMapping("/tarjetas/registrar")
     public String registrarTarjetaDesdeJugador(@PathVariable Long idEquipo,
                                                @ModelAttribute TarjetaDTO tarjetaDTO,

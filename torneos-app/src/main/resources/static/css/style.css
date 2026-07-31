@@ -361,6 +361,23 @@ button.btn-light:hover {
     border-radius: 1.25rem 1.25rem 0 0 !important;
 }
 
+/* === ESTILOS GLOBALES DE ALERTAS Y NOTIFICACIONES === */
+.alert-success {
+    background-color: #146c43 !important;
+    border-color: #0f5132 !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 12px rgba(20, 108, 67, 0.3) !important;
+}
+
+.alert-danger {
+    background-color: #842029 !important;
+    border-color: #5c161d !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 12px rgba(132, 32, 41, 0.3) !important;
+}
+
 /* === Partidos pendientes === */
 
 .mb-1 {

@@ -61,8 +61,14 @@ public class CanchaController {
     }
 
     @PostMapping("/guardar")
-    public String guardarCancha(@ModelAttribute CanchaDTO canchaDTO) {
+    public String guardarCancha(@ModelAttribute CanchaDTO canchaDTO, RedirectAttributes attributes) {
+        boolean esEdicion = canchaDTO.getId() != null;
         canchaService.guardarCancha(canchaDTO);
+        if (esEdicion) {
+            attributes.addFlashAttribute("mensajeExito", "Cancha actualizada con éxito.");
+        } else {
+            attributes.addFlashAttribute("mensajeExito", "Cancha registrada con éxito.");
+        }
         return "redirect:/canchas";
     }
 
