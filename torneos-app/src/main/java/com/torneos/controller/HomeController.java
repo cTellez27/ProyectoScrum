@@ -79,7 +79,28 @@ public class HomeController {
     }
 
     @GetMapping("/espectador")
-    public String mostrarEspectador() {
+    public String mostrarEspectador(Model model) {
+        try {
+            List<TorneoDTO> torneos = torneoService.listarTorneos();
+            List<EquipoDTO> equipos = equipoService.listarEquipos();
+            List<CanchaDTO> canchas = canchaService.listarCanchas();
+            List<PartidoDTO> partidosPendientes = partidoService.listarPartidosPendientes();
+            List<PartidoDTO> partidosJugados = partidoService.listarPartidosJugados();
+
+            model.addAttribute("torneos", torneos);
+            model.addAttribute("equipos", equipos);
+            model.addAttribute("canchas", canchas);
+            model.addAttribute("partidosPendientes", partidosPendientes);
+            model.addAttribute("partidosJugados", partidosJugados);
+
+            model.addAttribute("totalTorneos", torneos.size());
+            model.addAttribute("totalEquipos", equipos.size());
+            model.addAttribute("totalCanchas", canchas.size());
+            model.addAttribute("totalPartidos", partidosPendientes.size());
+            model.addAttribute("totalPartidosJugados", partidosJugados.size());
+        } catch (Exception e) {
+            // Manejo silencioso
+        }
         return "espectador/homeEspectador";
     }
 }

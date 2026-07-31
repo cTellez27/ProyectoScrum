@@ -16,12 +16,12 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	    http
 	        .authorizeHttpRequests(requests -> requests
-	            // 1. Recursos públicos
+	            // 1. Recursos públicos y de consulta para Espectador
 	            .requestMatchers("/", "/home", "/login", "/registro", "/css/**", "/js/**", "/espectador/**",
 					"/torneos", "/torneos/{idTorneo}", "/torneos/{idTorneo}/equipos",
 	                "/canchas",
-	                "/equipos",
-	                "/partidos", "/partidos/torneo/1", "/partidos/pendientes"
+	                "/equipos", "/equipos/*/jugadores",
+	                "/partidos", "/partidos/torneo/*", "/partidos/pendientes"
 				).permitAll()
 	            
 	            // 2. REGLAS DE ORGANIZADOR (Rutas de administración, creación y mutación)

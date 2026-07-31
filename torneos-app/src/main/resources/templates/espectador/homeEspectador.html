@@ -1,48 +1,333 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+<head th:replace="~{fragments/header :: head(title='Inicio Espectador - SGTF')}"></head>
 
-<head th:replace="~{fragments/header :: head(title='Inicio - SGTF')}"></head>
+<body class="bg-dark text-white">
+    <div th:replace="~{fragments/header :: sidebar}"></div>
 
-<body>
-
-    <a th:href="@{/home}" class="btn"  style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
-        Elegir otro rol
-    </a>
-
-    <main class="main-card text-center">
+    <div class="dashboard-wrapper">
         
-        <header>
-            <h1 class="text-white" style="font-size: 3.5rem;">
-                Sistema de Gestión de Torneos <span>⚽</span>
-            </h1>
+        <!-- HEADER PRINCIPAL DE ESPECTADOR -->
+        <header class="dashboard-header d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div>
+                <h1 class="dashboard-welcome-title">
+                    ⚽ Sistema de Gestión de Torneos
+                </h1>
+                <p class="dashboard-welcome-sub">Resumen Informativo y Consulta Pública de Torneos</p>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <div class="dashboard-header-badge">
+                    <i class="bi bi-calendar3 me-2 text-success"></i>
+                    <span id="current-date-badge">Fecha Actual</span>
+                </div>
+                <div class="user-profile-pill">
+                    <span class="user-avatar-icon bg-info text-dark">
+                        <i class="bi bi-eye-fill"></i>
+                    </span>
+                    <span>Espectador</span>
+                    <a th:href="@{/home}" class="btn btn-sm btn-outline-danger ms-2 py-0 px-2 rounded-pill small" title="Cambiar rol">
+                        <i class="bi bi-box-arrow-right"></i> Rol
+                    </a>
+                </div>
+            </div>
         </header>
 
-        <hr class="text-secondary my-4">
-
-        <nav>
-            <h2 class="menu-title">CONSULTAS</h2>
-            <div class="d-grid gap-3">
-                <a th:href="@{/torneos}" class="btn btn-main btn-main-green">
-                    <i class="bi bi-trophy-fill me-2"></i> Ver Torneos
-                </a>
-                <a th:href="@{/canchas}" class="btn btn-outline-light btn-lg w-100 py-3">
-                    <i class="bi bi-calendar-event-fill me-2"></i> Ver Canchas
-                </a>
-
-                <a th:href="@{/equipos}" class="btn btn-outline-light btn-lg w-100 py-3">
-                    <i class="bi bi-shield-fill me-2"></i> Ver Equipos Registrados
-                </a>
-                <a th:href="@{/partidos/pendientes}" class="btn btn-outline-light btn-lg w-100 py-3">
-                    <i class="bi bi-calendar-event-fill me-2"></i> Ver Partidos Pendientes
-                </a>
+        <!-- TARJETAS DE ESTADÍSTICAS RELEVANTES -->
+        <section class="dashboard-stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-icon green">
+                    <i class="bi bi-trophy-fill"></i>
+                </div>
+                <div class="stat-card-title">Torneos Activos</div>
+                <div class="stat-card-value" th:text="${totalTorneos != null ? totalTorneos : 0}">0</div>
+                <div class="stat-trend positive">En competencia</div>
             </div>
-        </nav>
-        
-        <footer class="mt-5 text-secondary">
-            <p>&copy; 2025 - Tu Proyecto de Torneos</p>
+
+            <div class="stat-card">
+                <div class="stat-card-icon blue">
+                    <i class="bi bi-shield-fill"></i>
+                </div>
+                <div class="stat-card-title">Equipos Registrados</div>
+                <div class="stat-card-value" th:text="${totalEquipos != null ? totalEquipos : 0}">0</div>
+                <div class="stat-trend positive">Participantes</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-icon yellow">
+                    <i class="bi bi-calendar-event-fill"></i>
+                </div>
+                <div class="stat-card-title">Partidos Programados</div>
+                <div class="stat-card-value" th:text="${totalPartidos != null ? totalPartidos : 0}">0</div>
+                <div class="stat-trend neutral">Próximos</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-icon purple">
+                    <i class="bi bi-check-circle-fill"></i>
+                </div>
+                <div class="stat-card-title">Partidos Jugados</div>
+                <div class="stat-card-value" th:text="${totalPartidosJugados != null ? totalPartidosJugados : 0}">0</div>
+                <div class="stat-trend positive">Finalizados</div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN MEDIA: PRÓXIMOS PARTIDOS Y CALENDARIO LEÍBLE -->
+        <section class="row g-4 mb-4">
+            <!-- TABLA DE PRÓXIMOS PARTIDOS -->
+            <div class="col-lg-7">
+                <div class="dashboard-card">
+                    <div class="dashboard-card-title">
+                        <span><i class="bi bi-calendar-check-fill me-2 text-success"></i> Próximos Partidos</span>
+                        <a th:href="@{/partidos/pendientes}" class="dashboard-link">Ver todos →</a>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle mb-0">
+                            <thead class="table-primary">
+                                <tr class="text-muted small">
+                                    <th>FECHA</th>
+                                    <th>HORA</th>
+                                    <th>TORNEO</th>
+                                    <th>PARTIDO</th>
+                                    <th>CANCHA</th>
+                                    <th class="text-end">ESTADO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${partidosPendientes == null or partidosPendientes.isEmpty()}">
+                                    <td colspan="6" class="text-center py-4 text-muted">
+                                        <i class="bi bi-calendar-x me-2 fs-5"></i> No hay partidos pendientes en este momento.
+                                    </td>
+                                </tr>
+
+                                <tr th:each="partido : ${partidosPendientes}">
+                                    <td th:text="${partido.fecha != null ? #temporals.format(partido.fecha, 'dd/MM/yyyy') : 'Pendiente'}">--/--/----</td>
+                                    <td class="fw-bold text-white" th:text="${partido.fecha != null ? #temporals.format(partido.fecha, 'HH:mm') : '--:--'}">--:--</td>
+                                    <td th:text="${partido.torneoNombre}">Torneo</td>
+                                    <td class="fw-bold text-white" th:text="${partido.equipoLocalNombre} + ' vs ' + ${partido.equipoVisitanteNombre}">Local vs Visitante</td>
+                                    <td th:text="${partido.canchaNombre != null ? partido.canchaNombre : 'Sin asignar'}">Cancha</td>
+                                    <td class="text-end"><span class="badge bg-success">Programado</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MÓDULO DE CALENDARIO SOLO LECTURA -->
+            <div class="col-lg-5">
+                <div class="dashboard-card">
+                    <div class="dashboard-card-title">
+                        <span><i class="bi bi-calendar3 me-2 text-success"></i> Calendario</span>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="mini-calendar">
+                                <div class="calendar-header-nav">
+                                    <span class="fw-bold text-white small">Julio / Agosto</span>
+                                </div>
+                                <div class="calendar-grid">
+                                    <div class="calendar-day-header">LUN</div>
+                                    <div class="calendar-day-header">MAR</div>
+                                    <div class="calendar-day-header">MIÉ</div>
+                                    <div class="calendar-day-header">JUE</div>
+                                    <div class="calendar-day-header">VIE</div>
+                                    <div class="calendar-day-header">SÁB</div>
+                                    <div class="calendar-day-header">DOM</div>
+
+                                    <div class="calendar-day other-month">27</div>
+                                    <div class="calendar-day other-month">28</div>
+                                    <div class="calendar-day other-month">29</div>
+                                    <div class="calendar-day" data-date="2026-07-30">30</div>
+                                    <div class="calendar-day selected" data-date="2026-07-31" data-display="Hoy">31</div>
+                                    <div class="calendar-day" data-date="2026-08-01">1</div>
+                                    <div class="calendar-day" data-date="2026-08-02">2</div>
+
+                                    <div class="calendar-day" data-date="2026-08-03">3</div>
+                                    <div class="calendar-day" data-date="2026-08-04">4</div>
+                                    <div class="calendar-day" data-date="2026-08-05">5</div>
+                                    <div class="calendar-day" data-date="2026-08-06">6</div>
+                                    <div class="calendar-day" data-date="2026-08-07">7</div>
+                                    <div class="calendar-day" data-date="2026-08-08">8</div>
+                                    <div class="calendar-day" data-date="2026-08-09">9</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 d-flex flex-column justify-content-between">
+                            <div>
+                                <h6 class="fw-bold text-white mb-2">
+                                    Partidos Programados
+                                </h6>
+                                
+                                <div id="calendar-matches-list">
+                                    <div th:if="${partidosPendientes != null and not partidosPendientes.isEmpty()}">
+                                        <div th:each="partido : ${partidosPendientes}" 
+                                             class="calendar-match-item p-3 mb-2 rounded bg-dark border border-secondary"
+                                             th:attr="data-match-date=${partido.fecha != null ? #temporals.format(partido.fecha, 'yyyy-MM-dd') : ''}">
+                                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                                <span class="badge bg-success fw-bold" th:text="${partido.fecha != null ? #temporals.format(partido.fecha, 'HH:mm') : 'Pendiente'}">--:--</span>
+                                                <small class="text-muted" th:text="${partido.torneoNombre}">Torneo</small>
+                                            </div>
+                                            <div class="fw-bold text-white text-center py-1 fs-6" th:text="${partido.equipoLocalNombre} + ' vs ' + ${partido.equipoVisitanteNombre}">
+                                                Local vs Visitante
+                                            </div>
+                                            <div class="text-end text-muted small">
+                                                <i class="bi bi-pin-map-fill me-1"></i>
+                                                <span th:text="${partido.canchaNombre != null ? partido.canchaNombre : 'Sin Cancha'}">Cancha</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="calendar-empty-state" 
+                                     class="empty-state py-4" 
+                                     th:classappend="${partidosPendientes != null and not partidosPendientes.isEmpty()} ? 'd-none' : ''">
+                                    <i class="bi bi-calendar-x"></i>
+                                    <p class="mb-0 small text-muted">No hay partidos programados.</p>
+                                </div>
+                            </div>
+                            <div class="text-center mt-3">
+                                <a th:href="@{/partidos/pendientes}" class="dashboard-link">Ver calendario completo →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE POSICIONES / RESULTADOS -->
+        <section class="row g-4 mb-4">
+            <!-- TABLA DE POSICIONES / EQUIPOS DESTACADOS -->
+            <div class="col-lg-6">
+                <div class="dashboard-card">
+                    <div class="dashboard-card-title">
+                        <span><i class="bi bi-award-fill me-2 text-warning"></i> Equipos Registrados</span>
+                        <a th:href="@{/equipos}" class="dashboard-link">Ver tabla completa →</a>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle mb-0">
+                            <thead class="table-primary">
+                                <tr class="text-muted small">
+                                    <th>#</th>
+                                    <th>EQUIPO</th>
+                                    <th>CIUDAD</th>
+                                    <th class="text-end">DT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${equipos == null or equipos.isEmpty()}">
+                                    <td colspan="4" class="text-center py-4 text-muted">
+                                        <i class="bi bi-shield-x me-2 fs-5"></i> No hay equipos registrados en el sistema.
+                                    </td>
+                                </tr>
+
+                                <tr th:each="equipo, iter : ${equipos}" th:if="${iter.index < 5}">
+                                    <td class="fw-bold text-success" th:text="${iter.count}">1</td>
+                                    <td class="fw-bold text-white">
+                                        <i class="bi bi-shield-fill me-2 text-primary"></i>
+                                        <span th:text="${equipo.nombre}">Equipo</span>
+                                    </td>
+                                    <td th:text="${equipo.ciudadOrigen}">Ciudad</td>
+                                    <td class="text-end text-muted" th:text="${equipo.directorTecnico != null ? equipo.directorTecnico : 'N/A'}">DT</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ÚLTIMOS RESULTADOS -->
+            <div class="col-lg-6">
+                <div class="dashboard-card">
+                    <div class="dashboard-card-title">
+                        <span><i class="bi bi-trophy-fill me-2 text-success"></i> Últimos Resultados</span>
+                    </div>
+
+                    <div th:if="${partidosJugados == null or partidosJugados.isEmpty()}" class="empty-state py-4">
+                        <i class="bi bi-clipboard-x fs-2"></i>
+                        <p class="mb-0 small text-muted">No hay resultados de partidos registrados aún.</p>
+                    </div>
+
+                    <div class="row g-2" th:if="${partidosJugados != null and not partidosJugados.isEmpty()}">
+                        <div class="col-12" th:each="partido : ${partidosJugados}">
+                            <div class="p-3 rounded bg-dark border border-secondary d-flex justify-content-between align-items-center">
+                                <div>
+                                    <small class="text-muted d-block" th:text="${partido.torneoNombre}">Torneo</small>
+                                    <span class="fw-bold text-white fs-6" th:text="${partido.equipoLocalNombre}">Local</span>
+                                </div>
+                                <div class="text-center px-3">
+                                    <span class="badge bg-success fs-5 px-3" th:text="${partido.resultado != null ? partido.resultado : 'VS'}">0 - 0</span>
+                                    <small class="text-muted d-block mt-1" th:text="${partido.fecha != null ? #temporals.format(partido.fecha, 'dd/MM') : ''}">Finalizado</small>
+                                </div>
+                                <div class="text-end">
+                                    <small class="text-muted d-block" th:text="${partido.canchaNombre}">Cancha</small>
+                                    <span class="fw-bold text-white fs-6" th:text="${partido.equipoVisitanteNombre}">Visitante</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE ACCESOS RÁPIDOS (TARJETAS GLASS) -->
+        <section class="mb-4">
+            <h5 class="fw-bold text-white mb-3"><i class="bi bi-compass-fill me-2 text-success"></i> Accesos Rápidos de Consulta</h5>
+            <div class="row g-3">
+                <div class="col-md-3 col-6">
+                    <a th:href="@{/torneos}" class="stat-card d-block text-decoration-none text-white text-center py-4">
+                        <div class="stat-card-icon green mx-auto">
+                            <i class="bi bi-trophy-fill"></i>
+                        </div>
+                        <div class="fw-bold text-white fs-5 mt-2">Ver Torneos</div>
+                        <span class="text-muted small">Explorar torneos activos</span>
+                    </a>
+                </div>
+
+                <div class="col-md-3 col-6">
+                    <a th:href="@{/equipos}" class="stat-card d-block text-decoration-none text-white text-center py-4">
+                        <div class="stat-card-icon blue mx-auto">
+                            <i class="bi bi-shield-fill"></i>
+                        </div>
+                        <div class="fw-bold text-white fs-5 mt-2">Ver Equipos</div>
+                        <span class="text-muted small">Ver plantillas y equipos</span>
+                    </a>
+                </div>
+
+                <div class="col-md-3 col-6">
+                    <a th:href="@{/partidos/pendientes}" class="stat-card d-block text-decoration-none text-white text-center py-4">
+                        <div class="stat-card-icon yellow mx-auto">
+                            <i class="bi bi-calendar-event-fill"></i>
+                        </div>
+                        <div class="fw-bold text-white fs-5 mt-2">Ver Partidos</div>
+                        <span class="text-muted small">Consultar fixtures</span>
+                    </a>
+                </div>
+
+                <div class="col-md-3 col-6">
+                    <a th:href="@{/canchas}" class="stat-card d-block text-decoration-none text-white text-center py-4">
+                        <div class="stat-card-icon cyan mx-auto">
+                            <i class="bi bi-pin-map-fill"></i>
+                        </div>
+                        <div class="fw-bold text-white fs-5 mt-2">Ver Canchas</div>
+                        <span class="text-muted small">Sedes y escenarios</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER GLOBAL DE ESPECTADOR -->
+        <footer class="mt-5 text-center text-muted small">
+            <p>&copy; 2026 Sistema de Gestión de Torneos - Modo Consulta Espectador.</p>
         </footer>
-    </main>
+
+    </div>
+
     <th:block th:replace="~{fragments/header :: scripts}"></th:block>
+    <script th:src="@{/js/dashboard.js}"></script>
 </body>
 </html>
