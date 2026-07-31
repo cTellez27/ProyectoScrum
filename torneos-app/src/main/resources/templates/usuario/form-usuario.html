@@ -31,9 +31,9 @@
                     <input type="email" id="correoUsuario" class="form-control" th:field="*{correoUsuario}" required />
                 </div>
                 
-                <div class="mb-3">
-                    <label for="contrasena" class="form-label fw-bold">Contraseña:</label>
-                    <input type="password" id="contrasenaUsuario" name="contrasena" class="form-control"
+                <div class="mb-3" th:if="${usuario.id == null}">
+                    <label for="contrasenaUsuario" class="form-label fw-bold">Contraseña:</label>
+                    <input type="password" id="contrasenaUsuario" class="form-control"
                            th:field="*{contrasenaUsuario}" required />
                 </div>
                 

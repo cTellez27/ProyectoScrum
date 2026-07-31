@@ -608,3 +608,316 @@ body.bg-dark {
         left: 110px !important;
     }
 }
+
+/* ==========================================================================
+   === DASHBOARD DE ADMINISTRACIÓN DEPORTIVA (MODERNO) ===
+   ========================================================================== */
+
+.dashboard-wrapper {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1.5rem 3rem 1.5rem;
+    margin-top: 4.5rem !important;
+}
+
+/* Header del Dashboard */
+.dashboard-header {
+    background-color: #242425;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.dashboard-welcome-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+}
+
+.dashboard-welcome-sub {
+    color: #adb5bd;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.dashboard-header-badge {
+    background-color: #1e2124;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ced4da;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.user-profile-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #1e2124;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-weight: 700;
+}
+
+.user-avatar-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+/* Grilla de Tarjetas Estadísticas */
+.dashboard-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background-color: #242425;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.85rem;
+    padding: 1.25rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    border-color: #4CAF50;
+}
+
+.stat-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.stat-card-icon.green { background-color: rgba(76, 175, 80, 0.15); color: #4CAF50; }
+.stat-card-icon.blue { background-color: rgba(13, 110, 253, 0.15); color: #0d6efd; }
+.stat-card-icon.purple { background-color: rgba(111, 66, 193, 0.15); color: #6f42c1; }
+.stat-card-icon.yellow { background-color: rgba(255, 193, 7, 0.15); color: #ffc107; }
+.stat-card-icon.cyan { background-color: rgba(13, 202, 240, 0.15); color: #0dcaf0; }
+.stat-card-icon.orange { background-color: rgba(253, 126, 20, 0.15); color: #fd7e14; }
+
+.stat-card-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #8a939b;
+    margin-bottom: 0.25rem;
+}
+
+.stat-card-value {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+}
+
+.stat-trend {
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.stat-trend.positive { color: #4CAF50; }
+.stat-trend.neutral { color: #8a939b; }
+
+/* Contenedores Principales */
+.dashboard-card {
+    background-color: #242425;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.85rem;
+    padding: 1.5rem;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
+    height: 100%;
+}
+
+.dashboard-card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard-link {
+    color: #4CAF50;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: color 0.2s ease;
+}
+.dashboard-link:hover { color: #5cb85c; text-decoration: underline; }
+
+/* Calendario Mini UI */
+.mini-calendar {
+    background-color: #1e2124;
+    border-radius: 0.6rem;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.calendar-header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+}
+
+.calendar-day-header {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #8a939b;
+    padding: 4px 0;
+}
+
+.calendar-day {
+    padding: 8px 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    color: #ced4da;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.calendar-day:hover {
+    background-color: #2b2e33;
+    color: #4CAF50;
+}
+
+.calendar-day.other-month {
+    color: #495057;
+    cursor: default;
+}
+
+.calendar-day.selected {
+    background-color: #4CAF50 !important;
+    color: #ffffff !important;
+    font-weight: 900;
+}
+
+.calendar-day.has-match::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+}
+
+.calendar-day.selected.has-match::after {
+    background-color: #ffffff;
+}
+
+/* Timeline Actividad Reciente */
+.activity-timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.activity-item:last-child { border-bottom: none; }
+
+.activity-icon-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.activity-content { flex: 1; }
+
+.activity-text {
+    font-size: 0.88rem;
+    color: #e2e6ea;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.activity-time {
+    font-size: 0.75rem;
+    color: #6c757d;
+}
+
+/* Donut Chart visual */
+.donut-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+.legend-color-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+/* Empty State Global */
+.empty-state {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: #6c757d;
+}
+.empty-state i {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #495057;
+}
+
+@media (max-width: 992px) {
+    .dashboard-wrapper {
+        padding: 0 1rem 2rem 1rem;
+    }
+}
