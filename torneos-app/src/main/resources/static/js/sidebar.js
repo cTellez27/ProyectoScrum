@@ -64,8 +64,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Resaltar elemento de menú activo según la URL actual
+    // Resaltar elemento de menú activo según la URL actual y optimizar historial
     const currentPath = window.location.pathname;
+    if ((currentPath.includes('/nuevo') || currentPath.includes('/editar')) && window.history && window.history.replaceState) {
+        window.history.replaceState(null, document.title, window.location.href);
+    }
+
     const links = sidebar.querySelectorAll('.sidebar-link[data-path]');
 
     links.forEach(link => {
